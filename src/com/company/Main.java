@@ -64,6 +64,7 @@ public class Main {
         Spark.post(
                 "/login",
                 ((request, response) -> {
+                    createTables(conn);
                     String username = request.queryParams("username");
                     String password = request.queryParams("password");
                     String url = request.queryParams("url");
