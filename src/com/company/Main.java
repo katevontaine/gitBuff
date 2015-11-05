@@ -1,8 +1,13 @@
 package com.company;
 
+import spark.ModelAndView;
+import spark.Session;
 import spark.Spark;
+import spark.template.mustache.MustacheTemplateEngine;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
 
@@ -15,7 +20,8 @@ public class Main {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO users VALUES (NULL , ? , ? , ?)");
         stmt.setString(1, name);
         stmt.setString(2, password);
-        stmt.setString(3 , url);
+        stmt.setString(3 , "https://slack-imgs.com/?url=https%3A%2F%2" + //generic pic url
+                "Fwww.placecage.com%2Fc%2F200%2F300&width=200&height=300");
         stmt.execute();
     }
 
@@ -35,12 +41,25 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./main");
 
+
         Spark.post(
                 "/login",
                 ((request, response) -> {
                     String username = request.queryParams("username");
                     String password = request.queryParams("password");
                     String url = request.queryParams("url");
+
+                    if (username.isEmpty() || password.isEmpty()) {
+                        Spark.halt(403);
+                    }
+
+                    User user = selectUser(conn, username);
+                    if (user == null) {
+                        insertUser(conn, username, password, url);
+                    }
+                    else if (!password.equals(user.password)) {
+                        Spark.halt(403);
+                    }
                     return "";
                 })
         );
