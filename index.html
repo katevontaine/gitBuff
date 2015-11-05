@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+
+    <section class="login">
+      <form action="">
+        <input type="text" name ="username" class="username" placeholder="User Name">
+        <input type="text" name="pass" value="" placeholder="password">
+        <button type="submit" name="button" class="mainLogIn btn btn-primary">Submit</button>
+      </form>
+    </section>
     <!-- <header class"col-md-12">
         <div class="row User">
             <div class="col-md-3 profilepic center-block">
@@ -28,22 +36,14 @@
 
 
     </footer> -->
-    <section class="login">
-      <form action="">
-        <input type="text" class="username" placeholder="User Name">
-        <input type="text" name="password" value="" placeholder="password">
-        <button type="submit" name="button" class="mainLogIn btn btn-primary">Submit</button>
-      </form>
-      <a href="" class="new">
-        New User?
-      </a>
 
-        <form action="" class="newUser">
-            <input type="text" class="newUserName" placeholder="User Name">
-            <input type="text" class="New Password" placeholder="Password">
-            <input type="text" class="avatar" placeholder="avatar URL">
-            <button type="submit" name="newSubmit" class="newSubmit btn btn-primary">Submit</button>
-        </form>
+    <section class="pagecontent container">
+          <div class="notes">
+            notes
+          </div>
+          <div class="workout hidden">
+            workout
+          </div>
     </section>
 
 
@@ -55,7 +55,7 @@
     <script src="bower_components/underscore/underscore.js" charset="utf-8"></script>
     <!-- scripts -->
     <script src="vars.js" charset="utf-8"></script>
-    <script src="template.js" charset="utf-8"></script>
+    <script src="templates.js" charset="utf-8"></script>
     <script src="main.js" charset="utf-8"></script>
     <script src="brandon.js" charset="utf-8"></script>
     <script src="kate.js" charset="utf-8"></script>
