@@ -14,6 +14,7 @@ public class Main {
     public static void createTables(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
         stmt.execute("CREATE TABLE IF NOT EXISTS users (id IDENTITY , name VARCHAR , password VARCHAR , url VARCHAR)");
+        stmt.execute("CREATE TABLE IF NOT EXISTS workouts (id IDENTITY , name VARCHAR)");
     }
 
     public static void insertUser (Connection conn , String name, String password , String url) throws SQLException {
@@ -38,8 +39,24 @@ public class Main {
         return user;
     }
 
+    public static void insertWorkout(Connection conn, String name) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO workouts VALUES (NULL,?)");
+        stmt.setString(1, name);
+        stmt.execute();
+    }
+
+    public static void populateWorkouts(Connection conn) throws SQLException {
+        Workout workout = new Workout();
+
+
+        }
+
+
+
     public static void main(String[] args) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./main");
+
+        createTables(conn);
 
         Spark.externalStaticFileLocation("public");
         Spark.init();
