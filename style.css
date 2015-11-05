@@ -1,16 +1,24 @@
 header {
-  background-color: #021C1E; }
+  background-color: #858A30;
+  height: 230px; }
   header .profilepic {
     display: block;
     margin: 10px, auto;
-    border-radius: 100%;
-    border: 2px black solid;
     float: none;
-    padding: 0;
-    overflow: hidden; }
+    overflow: hidden;
+    padding: 10px 0 0 0; }
     header .profilepic img {
-      max-width: 100%;
-      vertical-align: top; }
+      margin: 0auto;
+      padding: 0; }
+
+.user {
+  border-bottom: 3px solid white;
+  height: 300px; }
+
+.quote {
+  position: relative;
+  background-color: white;
+  text-align: center; }
 
 body {
   background-color: #A2AB2A;
@@ -29,4 +37,21 @@ section .notes {
   margin: 0auto; }
 
 section .workout {
-  background-color: green; }
+  background-color: green;
+  background-color: white;
+  width: 70%;
+  padding: 0;
+  margin: 0auto; }
+
+section .login {
+  background-color: white;
+  width: 40%;
+  padding: 0;
+  margin: 0auto;
+  display: inline-block; }
+
+.login input {
+  display: inline-block;
+  width: 250px;
+  height: 55px;
+  font-size: 35px; }
