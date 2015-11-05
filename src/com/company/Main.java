@@ -47,9 +47,11 @@ public class Main {
 
     public static void populateWorkouts(Connection conn) throws SQLException {
         Workout workout = new Workout();
-
-
         }
+    public static void testUser(Connection conn) throws SQLException {
+        insertUser(conn, "alice", "1245", "" );
+    }
+
 
 
 
@@ -58,13 +60,14 @@ public class Main {
 
         createTables(conn);
 
+        testUser(conn);
+
         Spark.externalStaticFileLocation(".");
         Spark.init();
 
         Spark.post(
                 "/login",
                 ((request, response) -> {
-                    createTables(conn);
                     String username = request.queryParams("username");
                     String password = request.queryParams("password");
                     String url = request.queryParams("url");
