@@ -58,7 +58,7 @@ public class Main {
 
         createTables(conn);
 
-        Spark.externalStaticFileLocation("public");
+        Spark.externalStaticFileLocation(".");
         Spark.init();
 
         Spark.post(
