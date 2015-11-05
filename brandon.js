@@ -25,6 +25,17 @@ $('form').on('click','.mainLogIn', function(e){
         })
 });
 
+$.ajax({
+  url:'/login',
+  method:'GET',
+  success:function(data){
+    console.log("Success: " + data);
+  },
+  failure:function(data){
+    console.log("FAilure: "+ data);
+  }
+});
+
 
 
 // /loggedin
