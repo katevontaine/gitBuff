@@ -53,8 +53,6 @@ public class Main {
     }
 
 
-
-
     public static void main(String[] args) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./main");
 
@@ -83,7 +81,6 @@ public class Main {
                     else if (!password.equals(user.password)) {
                         Spark.halt(403);
                     }
-                    response.redirect("/logged-in");
                     return "";
                 })
         );
