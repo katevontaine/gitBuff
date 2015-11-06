@@ -21,7 +21,7 @@
 
     <section class="login">
       <form action="">
-        <input type="text" class="username" placeholder="User Name"><br>
+        <input type="text" name="username" class="username" placeholder="User Name"><br>
         <input type="text" name="password" value="" placeholder="Password"><br>
         <button type="submit" name="button" class="mainLogIn btn btn-primary">Submit</button>
       </form>
@@ -29,17 +29,21 @@
     </section>
 
 
-<section class="pagecontent container hide">
+<section class="pagecontent container">
+  <br>
+  <nav class="clearfix specific"><ul class="col-md-12"><a href=""><li class="col-md-6"><h3>Workout</h3></li></a><a href=""><li class="col-md-6"><h3>Notes</h3></li></a></ul></nav>
   <div class="notes">
     <h3>My Notes:</h3>
-    <p> this is my notes section</p>
-    <ul><li>workout</li><li>notes</li></ul>
+    <div class="notebox" ><p> this is my notes section</p></div>
+    <div class="notebox"><p> this is my notes section</p></div>
+    <div class="notebox"><p> this is my notes section</p></div>
   </div>
 
 
-  <div class="workout hide">
+  <div class="workout">
   <h3>Today's Workout is:</h3>
   <p>insert workout template here</p>
+
   <form class="noteForm" action="">
     <input style="width:250px;" type="text" name="thoughts" class="noteWO" placeholder="Today my workout was...">
     <button type="submit" name="button" class="btn notesubmit">Submit</button>

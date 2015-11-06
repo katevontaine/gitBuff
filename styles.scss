@@ -44,20 +44,86 @@ body{
   margin: 0 auto;
 }
 section{
+  display: block;
     .notes{
       background-color: white;
       width:70%;
       padding: 0;
-      margin:0auto;
+      margin:0 auto;
+      border:5px solid #A2AB2A;
+      // position: relative;
+      display: block;
+      width:68.5%;
+
     }
     .workout{
-      background-color: green;
       background-color: white;
       width:70%;
       padding: 0;
-      margin:0auto;
+      margin:0 auto;
+      border:5px solid #A2AB2A;
+      display: block;
+      width:68.5%;
+
     }
 
+}
+
+nav .col-md-12{
+  width: 70%;
+  margin: 0 auto;
+  float:none;
+  position: relative;
+}
+nav{
+  text-decoration: none;
+  float: none;
+  li{
+    display: inline-block;
+    text-align: center;
+    background-color: #F7840F;
+    text-decoration: none;
+    color: white;
+    float: none;
+    height: 40px;
+
+  }
+}
+h3{
+  margin-top: 3%;
+}
+.specific{
+   float: none;
+    padding-bottom: 10px;
+    a{
+      padding-bottom: 10px;
+    }
+ }
+
+.notes h3{
+  margin: 0 auto;
+  text-align: center;
+}
+.notes p{
+  margin: 0 auto;
+  text-align: center;
+}
+.workout h3{
+  margin: 0 auto;
+  text-align: center;
+}
+.workout p{
+  margin: 0 auto;
+  text-align: center;
+}
+.workout form{
+  margin: 0 auto;
+  text-align: center;
+}
+ul li{
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: none;
 }
 form{
   padding-top: 15px;
@@ -84,11 +150,16 @@ section  .login{
 }
 
 .pagecontent{
-  border:1px solid black;
+  border:5px solid #A2AB2A;
   min-height:100px;
-  div{
-    border: 1px solid black;
-    min-height:50px;
+  margin: 0 auto;
+  padding: 0;
+  display: block;
+  float: none;
+  .notebox{
 
   }
+  // div{
+  //   min-height:300px;
+  // }
 }
