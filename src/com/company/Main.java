@@ -4,13 +4,12 @@ import jodd.json.JsonSerializer;
 import spark.ModelAndView;
 import spark.Session;
 import spark.Spark;
-import spark.template.mustache.MustacheTemplateEngine;
-
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.time.LocalDateTime;
 
 public class Main {
+    static LocalDateTime lastWorkoutTime = null;
+    static Workout lastWorkout = null;
 
     public static void createTables(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
@@ -47,57 +46,57 @@ public class Main {
 
     public static void insertArm(Connection conn) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO arms VALUES (NULL, ?)");
-        stmt.setString(1, "arm1");
+        stmt.setString(1, "Curls");
         stmt.execute();
-        stmt.setString(1, "arm2");
+        stmt.setString(1, "Bench press");
         stmt.execute();
-        stmt.setString(1, "arm3");
+        stmt.setString(1, "Push ups ");
         stmt.execute();
-        stmt.setString(1, "arm4");
+        stmt.setString(1, "Pull ups");
         stmt.execute();
-        stmt.setString(1, "arm5");
+        stmt.setString(1, "Dips");
         stmt.execute();
     }
 
     public static void insertLeg(Connection conn) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO legs VALUES (NULL, ?)");
-        stmt.setString(1, "leg1");
+        stmt.setString(1, "Squats");
         stmt.execute();
-        stmt.setString(1, "leg2");
+        stmt.setString(1, "Lunges");
         stmt.execute();
-        stmt.setString(1, "leg3");
+        stmt.setString(1, "Box jumps");
         stmt.execute();
-        stmt.setString(1, "leg4");
+        stmt.setString(1, "Step ups");
         stmt.execute();
-        stmt.setString(1, "leg5");
+        stmt.setString(1, "Calf raises");
         stmt.execute();
     }
 
     public static void insertCardio(Connection conn) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO cardios VALUES (NULL, ?)");
-        stmt.setString(1, "cardio1");
+        stmt.setString(1, "Run");
         stmt.execute();
-        stmt.setString(1, "cardio2");
+        stmt.setString(1, "Bike");
         stmt.execute();
-        stmt.setString(1, "cardio3");
+        stmt.setString(1, "Swim");
         stmt.execute();
-        stmt.setString(1, "cardio4");
+        stmt.setString(1, "Row");
         stmt.execute();
-        stmt.setString(1, "cardio5");
+        stmt.setString(1, "Jump rope");
         stmt.execute();
     }
 
     public static void insertCore(Connection conn) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO cores VALUES (NULL, ?)");
-        stmt.setString(1, "core1");
+        stmt.setString(1, "Sit ups");
         stmt.execute();
-        stmt.setString(1, "core2");
+        stmt.setString(1, "Crunches");
         stmt.execute();
-        stmt.setString(1, "core3");
+        stmt.setString(1, "V ups ");
         stmt.execute();
-        stmt.setString(1, "core4");
+        stmt.setString(1, "Plank");
         stmt.execute();
-        stmt.setString(1, "core5");
+        stmt.setString(1, "Flutter kick");
         stmt.execute();
     }
 
@@ -189,13 +188,14 @@ public class Main {
                 })
         );
 
-
         Spark.get("/randomWorkout",
                 (request, response) -> {
-                    Workout workout = createWorkout(conn);
+                    if (lastWorkoutTime == null || lastWorkoutTime.isBefore(LocalDateTime.now().minusDays(1))) {
+                        lastWorkoutTime = LocalDateTime.now();
+                        lastWorkout = createWorkout(conn);
+                    }
                     JsonSerializer serializer = new JsonSerializer();
-                    return serializer.serialize(workout);
+                    return serializer.serialize(lastWorkout);
                 });
-
-    }
+        }
 }
