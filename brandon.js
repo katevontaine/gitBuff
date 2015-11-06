@@ -26,9 +26,9 @@ $('form').on('click','.mainLogIn', function(e){
           }
 
         });
-}),
+});
 
-function getStuff(){$.ajax({
+var getStuff = function(){$.ajax({
   url:"/randomWorkout",
   method:'GET',
   success:function(data){
