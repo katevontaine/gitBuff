@@ -7,8 +7,7 @@ $('form').on('click','.mainLogIn', function(e){
         $.ajax({
           url:'/login',
           method:'POST',
-          data: {username: user, password:pwd},
-
+          data: {username:user, password:pwd},
           success: function(){
               console.log("this works");
 
@@ -17,5 +16,7 @@ $('form').on('click','.mainLogIn', function(e){
             console.log("running but not working");
           }
 
-        })
+        });
 });
+
+// /randomWorkout
