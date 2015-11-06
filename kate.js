@@ -1,7 +1,7 @@
 postNote: function(){
     $('.noteform').on('submit', function(event){
           var theNote = {user: $('input[name="thoughts"]').val(), color: ''};
-          
+
             }
           });
           event.preventDefault();
@@ -16,3 +16,15 @@ postNote: function(){
           });
         });
   },
+
+
+
+
+
+  // 
+  // var clickedSection = "." + $(this).attr('rel');
+  // $(clickedSection).addClass('clickedElement');
+  // $(clickedSection).siblings('div').removeClass('clickedElement');
+  // $(clickedSection).siblings('div').addClass('hideElement');
+  // $(clickedSection).removeClass('hideElement');
+  // $('.empty1').hide();

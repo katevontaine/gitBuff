@@ -13,6 +13,7 @@ header{
 img{
   margin: 0auto;
   padding: 0;
+  border-radius: 100%;
 }
   }
 }
@@ -56,15 +57,16 @@ section{
 
 
 }
+
 section  .login{
     background-color: white;
     width:40%;
     padding: 0;
     margin:0auto;
-    display: inline-block;
+    display: block;
   }
 .login input{
-  display: inline-block;
+  display: block;
   width:250px;
   height:55px;
   font-size: 35px;
