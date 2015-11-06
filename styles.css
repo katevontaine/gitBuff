@@ -1,0 +1,20 @@
+header {
+  background-color: #021C1E; }
+  header .profilepic {
+    display: block;
+    margin: 10px, auto;
+    border-radius: 100%;
+    border: 2px black solid;
+    float: none;
+    padding: 0;
+    overflow: hidden; }
+    header .profilepic img {
+      max-width: 100%;
+      vertical-align: top; }
+
+.pagecontent {
+  border: 1px solid black;
+  min-height: 100px; }
+  .pagecontent div {
+    border: 1px solid black;
+    min-height: 50px; }
