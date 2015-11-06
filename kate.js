@@ -23,17 +23,20 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
 ////CLICK EVENTS INSIDE APPS//////////////////////////////
 
 
-    $('.notes').on('click', function(event){
+    $('nav').on('click',".not", function(event){
+      console.log('clicked');
       event.preventDefault();
-      $('.workouts').addClass('hide');
+      $('.workout').addClass('hide');
       $('.notes').removeClass('hide');
-      $('.pagecontent').removeClass('hide');
+      // $('.pagecontent').removeClass('hide');
     });
 
-    $('.workouts').on('click', function(event){
+    $('nav').on('click',".work", function(event){
+      console.log('clicked');
       event.preventDefault();
       $('.notes').addClass('hide');
-      $('.workouts').removeClass('hide');
+      $('.workout').removeClass('hide');
+      // $('.workout').addClass('display');
       $('.pagecontent').removeClass('hide');
 
     });
@@ -42,6 +45,6 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
 
 //////////////////////////////
 
-var currDate = moment().format("MMM Do YY");
+// var currDate = moment().format("MMM Do YY");
 //bower install moment --save
 //////////////////////////////
