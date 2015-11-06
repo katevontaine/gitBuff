@@ -1,30 +1,27 @@
-postNote: function(){
-    $('.noteform').on('submit', function(event){
-          var theNote = {user: $('input[name="thoughts"]').val(), color: ''};
 
-            }
-          });
-          event.preventDefault();
-          $.ajax({
-            method:'POST',
-            url: page.notes,
-            data: theNote,
-            success: function(data){
-              page.currUser = data._id;
-              $('input[name="thoughts"]').val('');
-            }
-          });
-        });
-  },
+var Herourl = "http://tiny-tiny.herokuapp.com/collections";
+
+    $('form').on('click','.notesubmit', function(e){
+     e.preventDefault();
+     var theNote = $(this).siblings('input[name="thoughts"]').val();
+     $.ajax({
+       url:Herourl + "/notes",
+       method:'POST',
+       data: {notes: theNote},
+
+       success:function(el){
+         console.log("Success: "+ el);
+         $('input[name="thoughts"]').val("");
+       },
+       failure:function(){
+         console.log("didn't work");
+       }
+     })
+    });
 
 
 
-
-
-  // 
-  // var clickedSection = "." + $(this).attr('rel');
-  // $(clickedSection).addClass('clickedElement');
-  // $(clickedSection).siblings('div').removeClass('clickedElement');
-  // $(clickedSection).siblings('div').addClass('hideElement');
-  // $(clickedSection).removeClass('hideElement');
-  // $('.empty1').hide();
+// $('form').on('click','.mainLogIn', function(e){
+//         e.preventDefault();
+//         $(this).siblings('section').removeClass('hide');
+//           });
