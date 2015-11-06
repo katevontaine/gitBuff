@@ -8,12 +8,9 @@ $('form').on('click','.mainLogIn', function(e){
           url:'/login',
           method:'POST',
           data: {username: user, password:pwd},
-          success:function(stuff){
-            console.log("success: " + stuff);
-
-          },
-          failure:function(stuff){
-            console.log("Fail: " +stuff);
+          
+          success: function(){
+              console.log("this works");
           }
 
         })
