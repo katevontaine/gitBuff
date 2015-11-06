@@ -28,7 +28,7 @@
         <h5>Vincent Van Gough</h5>
     </div>
 
-    <section class="login hide">
+    <section class="login">
       <form action="">
         <input type="text" name="username" class="username" placeholder="User Name"><br>
         <input type="text" name="password" value="" placeholder="Password"><br>
@@ -40,7 +40,20 @@
 
 <section class="pagecontent container hide">
   <br>
-  <nav class="clearfix specific"><ul class="col-md-12"><a href=""><li class="col-md-6"><h3>Workout</h3></li></a><a href=""><li class="col-md-6"><h3>Notes</h3></li></a></ul></nav>
+  <div class="col-md-8 colorcontent">
+  <nav class="col-md-12 clearfix specific">
+    <ul class="col-md-12"><a href="">
+      <li class="col-md-6">
+        <h3>Workout</h3>
+      </li>
+    </a>
+    <a href="">
+        <li class="col-md-6">
+          <h3>Notes</h3>
+        </li>
+      </a>
+    </ul>
+  </nav>
   <div class="notes">
     <h3>My Notes:</h3>
     <div class="notebox" ><p> this is my notes section</p></div>
@@ -50,7 +63,7 @@
 
 
 
-  <div class="workout">
+  <div class="workout hide">
   <h3>Today's Workout is:</h3>
   <div class="todaysWorkout">
     <ul id="listWorkout">
@@ -66,6 +79,7 @@
     <input style="width:250px;" type="text" name="thoughts" class="noteWO" placeholder="Today my workout was...">
     <button type="submit" name="button" class="btn notesubmit">Submit</button>
   </form>
+  </div>
   </div>
 
 

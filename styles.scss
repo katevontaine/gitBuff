@@ -19,6 +19,9 @@ img{
 }
   }
 }
+
+
+
 .avatarPic{
   margin: 0auto;
   padding: 0;
@@ -60,23 +63,16 @@ section{
   display: block;
     .notes{
       background-color: white;
-      width:70%;
       padding: 0;
-      margin:0 auto;
-      border:5px solid #A2AB2A;
-      // position: relative;
+      margin:5px;
       display: block;
-      width:68.5%;
 
     }
     .workout{
       background-color: white;
-      width:70%;
-      padding: 0;
-      margin:0 auto;
-      border:5px solid #A2AB2A;
-      display: block;
-      width:68.5%;
+      padding: 2px;
+      margin:5px;
+
 
     }
 
@@ -87,8 +83,7 @@ HEADER
 *******************************************/
 
 nav .col-md-12{
-  width: 70%;
-  margin: 0 auto;
+  padding:0;
   float:none;
   position: relative;
 }
@@ -111,7 +106,8 @@ h3{
 }
 .specific{
    float: none;
-    padding-bottom: 10px;
+    padding:0;
+    margin:0;
     a{
       padding-bottom: 10px;
     }
@@ -171,7 +167,6 @@ section  .login{
   min-height:100px;
   margin: 0 auto;
   padding: 0;
-  display: block;
   float: none;
   .notebox{
 
@@ -191,4 +186,12 @@ WORKOUT OF THE DAY section
   .WorkItem{
     font-size:1.2em;
   }
+}
+
+.colorcontent{
+  background-color:#F7840F;
+  margin:0 auto;
+  padding:0;
+  padding-bottom:5px;
+  float:none;
 }
