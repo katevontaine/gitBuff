@@ -1,9 +1,3 @@
-//
-// url: http:/tiny-tiny.herokuapp.com./collections/login
-// url: http:/tiny-tiny.herokuapp.com./collections/randomWorkout
-// url: http:/tiny-tiny.herokuapp.com./collections/notes
-
-
 
 $('form').on('click','.mainLogIn', function(e){
         e.preventDefault();
@@ -26,6 +20,7 @@ $('form').on('click','.mainLogIn', function(e){
           }
 
         });
+
 });
 
 var getStuff = function(){$.ajax({
