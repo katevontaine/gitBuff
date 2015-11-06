@@ -24,7 +24,3 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
 //         e.preventDefault();
 //         $(this).siblings('section').removeClass('hide');
 //           });
-
-//http://tiny-tiny.herokuapp.com/collections/login
-//http://tiny-tiny.herokuapp.com/collections/randoWorkouts
-//http://tiny-tiny.herokuapp.com/collections/notes
