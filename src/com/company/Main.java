@@ -13,8 +13,8 @@ public class Main {
 
     public static void createTables(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
-        stmt.execute("CREATE TABLE IF NOT EXISTS users (id IDENTITY , name VARCHAR , password VARCHAR , url VARCHAR)");
-        stmt.execute("CREATE TABLE IF NOT EXISTS workouts (id IDENTITY , name VARCHAR)");
+        stmt.execute("CREATE TABLE IF NOT EXISTS users (id IDENTITY(1,1) , name VARCHAR , password VARCHAR , url VARCHAR)");
+        stmt.execute("CREATE TABLE IF NOT EXISTS workouts (id IDENTITY(1,1) , name VARCHAR)");
     }
 
     public static void insertUser (Connection conn , String name, String password , String url) throws SQLException {
@@ -26,7 +26,7 @@ public class Main {
         stmt.execute();
     }
 
-    public static User selectUser (Connection conn , String name ) throws SQLException {
+    public static User selectUser (Connection conn , String name) throws SQLException {
         User user = null;
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users WHERE name = ?");
         stmt.setString(1, name);
@@ -53,8 +53,6 @@ public class Main {
     }
 
 
-
-
     public static void main(String[] args) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./main");
 
@@ -64,6 +62,7 @@ public class Main {
 
         Spark.externalStaticFileLocation(".");
         Spark.init();
+
 
         Spark.post(
                 "/login",
@@ -83,7 +82,6 @@ public class Main {
                     else if (!password.equals(user.password)) {
                         Spark.halt(403);
                     }
-                    response.redirect("/logged-in");
                     return "";
                 })
         );
