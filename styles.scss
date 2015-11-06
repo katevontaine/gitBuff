@@ -1,6 +1,11 @@
+$darkGreen: #858A30;
+$medGreen: #A2AB2A;
+$white:white;
+$tangerine: #F7840F;
+
 
 header{
-  background-color:#858A30;
+  background-color:$darkGreen;
   height: 230px;
 
   .profilepic{
@@ -168,6 +173,7 @@ section  .login{
   margin: 0 auto;
   padding: 0;
   float: none;
+  width: 80%;
   .notebox{
 
   }
