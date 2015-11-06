@@ -1,26 +1,33 @@
+
 header{
   background-color:#858A30;
   height: 230px;
 
   .profilepic{
     display:block;
-    margin:10px, auto;
+    margin:0 auto;
     // border-radius:100%;
     // border:2px white solid;
     float:none;
     overflow:hidden;
     padding: 10px 0 0 0;
 img{
-  margin: 0auto;
+  margin: 0 auto;
   padding: 0;
   border-radius: 100%;
+  max-height: 200px;
 }
   }
 }
+.avatarPic{
+  margin: 0auto;
+  padding: 0;
+}
 .user{
+  background-color:#858A30;
   border-bottom: 3px solid white;
   // padding:20px 0 20px 0;
-  height: 300px;
+  // height: 350px;
   // position: relative;
 }
 .quote{
@@ -43,7 +50,7 @@ body{
   color:white;
   margin: 0 auto;
 }
-hover:.btn{
+.btn:hover{
   background-color: white;
   border: white;
   color:#F7840F;
