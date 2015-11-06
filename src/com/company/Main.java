@@ -182,20 +182,20 @@ public class Main {
                     User user = selectUser(conn, username);
                     if (user == null) {
                         insertUser(conn, username, password, url);
-                    }
-                    else if (!password.equals(user.password)) {
+                    } else if (!password.equals(user.password)) {
                         Spark.halt(403);
                     }
                     return "";
                 })
         );
 
+
         Spark.get("/randomWorkout",
                 (request, response) -> {
-            Workout workout = createWorkout(conn);
-            JsonSerializer serializer = new JsonSerializer();
-            return serializer.serialize(workout);
-        });
+                    Workout workout = createWorkout(conn);
+                    JsonSerializer serializer = new JsonSerializer();
+                    return serializer.serialize(workout);
+                });
 
     }
 }
