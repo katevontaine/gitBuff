@@ -3,14 +3,14 @@
 // url: http:/tiny-tiny.herokuapp.com./collections/randomWorkout
 // url: http:/tiny-tiny.herokuapp.com./collections/notes
 
-// var Herourl = "https://tiny-tiny.herokuapp.com/collections"
+
 
 $('form').on('click','.mainLogIn', function(e){
         e.preventDefault();
         var user = $(this).siblings('input[name="username"]').val();
         var pwd = $(this).siblings('input[name="password"]').val();
           $.ajax({
-          url: "/login",
+          url:"/login",
           method:'POST',
           data: {username:user, password:pwd},
           success: function(data){
@@ -28,7 +28,7 @@ $('form').on('click','.mainLogIn', function(e){
         });
 }),
 
-$.ajax({
+function getStuff(){$.ajax({
   url:"/randomWorkout",
   method:'GET',
   success:function(data){
@@ -39,6 +39,7 @@ $.ajax({
   },
 
 });
+};
 
 
 
