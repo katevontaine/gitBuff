@@ -13,8 +13,13 @@ public class Main {
 
     public static void createTables(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
-        stmt.execute("CREATE TABLE IF NOT EXISTS users (id IDENTITY(1,1) , name VARCHAR , password VARCHAR , url VARCHAR)");
-        stmt.execute("CREATE TABLE IF NOT EXISTS workouts (id IDENTITY(1,1) , name VARCHAR)");
+        stmt.execute("CREATE TABLE IF NOT EXISTS users (id IDENTITY(1,1) , name VARCHAR , " +
+                "password VARCHAR , url VARCHAR)");
+        stmt.execute("CREATE TABLE IF NOT EXISTS arms (id IDENTITY(1,1) , arm VARCHAR)");
+        stmt.execute("CREATE TABLE IF NOT EXISTS legs (id IDENTITY(1,1) , leg VARCHAR)");
+        stmt.execute("CREATE TABLE IF NOT EXISTS cardios (id IDENTITY(1,1) , cardio VARCHAR)");
+        stmt.execute("CREATE TABLE IF NOT EXISTS cores (id IDENTITY(1,1) , core VARCHAR)");
+
     }
 
     public static void insertUser (Connection conn , String name, String password , String url) throws SQLException {
@@ -39,17 +44,112 @@ public class Main {
         return user;
     }
 
-    public static void insertWorkout(Connection conn, String name) throws SQLException {
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO workouts VALUES (NULL,?)");
-        stmt.setString(1, name);
+    public static void insertArm(Connection conn) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO arms VALUES (NULL, ?)");
+        stmt.setString(1, "arm1");
+        stmt.execute();
+        stmt.setString(1, "arm2");
+        stmt.execute();
+        stmt.setString(1, "arm3");
+        stmt.execute();
+        stmt.setString(1, "arm4");
+        stmt.execute();
+        stmt.setString(1, "arm5");
         stmt.execute();
     }
 
-    public static void populateWorkouts(Connection conn) throws SQLException {
-        Workout workout = new Workout();
+    public static void insertLeg(Connection conn) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO legs VALUES (NULL, ?)");
+        stmt.setString(1, "leg1");
+        stmt.execute();
+        stmt.setString(1, "leg2");
+        stmt.execute();
+        stmt.setString(1, "leg3");
+        stmt.execute();
+        stmt.setString(1, "leg4");
+        stmt.execute();
+        stmt.setString(1, "leg5");
+        stmt.execute();
+    }
+
+    public static void insertCardio(Connection conn) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO cardios VALUES (NULL, ?)");
+        stmt.setString(1, "cardio1");
+        stmt.execute();
+        stmt.setString(1, "cardio2");
+        stmt.execute();
+        stmt.setString(1, "cardio3");
+        stmt.execute();
+        stmt.setString(1, "cardio4");
+        stmt.execute();
+        stmt.setString(1, "cardio5");
+        stmt.execute();
+    }
+
+    public static void insertCore(Connection conn) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO cores VALUES (NULL, ?)");
+        stmt.setString(1, "core1");
+        stmt.execute();
+        stmt.setString(1, "core2");
+        stmt.execute();
+        stmt.setString(1, "core3");
+        stmt.execute();
+        stmt.setString(1, "core4");
+        stmt.execute();
+        stmt.setString(1, "core5");
+        stmt.execute();
+    }
+
+    public static Workout createWorkout(Connection conn) throws SQLException {
+        Statement stmt = conn.createStatement();
+        ArmWorkout armName = null;
+        LegWorkout legName = null;
+        CardioWorkout cardioName = null;
+        CoreWorkout coreName = null;
+
+        insertArm(conn);
+
+        ResultSet resultsArm = stmt.executeQuery("SELECT * FROM arms ORDER BY RAND() LIMIT 1");
+        if(resultsArm.next()) {
+            armName = new ArmWorkout();
+            armName.id = resultsArm.getInt("id");
+            armName.arm = resultsArm.getString("arm");
         }
-    public static void testUser(Connection conn) throws SQLException {
-        insertUser(conn, "alice", "1245", "" );
+
+        insertLeg(conn);
+
+        ResultSet resultsLeg = stmt.executeQuery("SELECT * FROM legs ORDER BY RAND() LIMIT 1");
+        if(resultsLeg.next()) {
+            legName = new LegWorkout();
+            legName.id = resultsLeg.getInt("id");
+            legName.leg = resultsLeg.getString("leg");
+        }
+
+        insertCardio(conn);
+
+        ResultSet resultsCardio = stmt.executeQuery("SELECT * FROM cardios ORDER BY RAND() LIMIT 1");
+        if(resultsCardio.next()) {
+            cardioName = new CardioWorkout();
+            cardioName.id = resultsCardio.getInt("id");
+            cardioName.cardio = resultsCardio.getString("cardio");
+        }
+
+        insertCore(conn);
+
+        ResultSet resultsCore = stmt.executeQuery("SELECT * FROM cores ORDER BY RAND() LIMIT 1");
+        if(resultsCore.next()) {
+            coreName = new CoreWorkout();
+            coreName.id = resultsCore.getInt("id");
+            coreName.core = resultsCore.getString("core");
+        }
+
+
+        Workout workout = new Workout();
+        workout.armWorkout = armName;
+        workout.legWorkout = legName;
+        workout.cardioWorkout = cardioName;
+        workout.coreWorkout = coreName;
+        return workout;
     }
 
 
@@ -58,7 +158,12 @@ public class Main {
 
         createTables(conn);
 
-        testUser(conn);
+        if (selectUser(conn, "alice") == null) {
+            insertUser(conn, "alice", "1245", "");
+        }
+
+        Workout workout = createWorkout(conn);
+
 
         Spark.externalStaticFileLocation(".");
         Spark.init();
