@@ -3,7 +3,7 @@
 $('form').on('click','.mainLogIn', function(e){
         e.preventDefault();
         var user = $(this).siblings('input[name="username"]').val();
-        var pwd = $(this).siblings('input[name="pass"]').val();
+        var pwd = $(this).siblings('input[name="password"]').val();
         $.ajax({
           url:'/login',
           method:'POST',
@@ -12,6 +12,9 @@ $('form').on('click','.mainLogIn', function(e){
           success: function(){
               console.log("this works");
 
+          },
+          failure:function(){
+            console.log("running but not working");
           }
 
         })
