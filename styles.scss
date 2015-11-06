@@ -71,3 +71,13 @@ section  .login{
   height:55px;
   font-size: 35px;
 }
+
+.pagecontent{
+  border:1px solid black;
+  min-height:100px;
+  div{
+    border: 1px solid black;
+    min-height:50px;
+
+  }
+}
