@@ -1,5 +1,6 @@
 
 
+
 $('form').on('click','.mainLogIn', function(e){
         e.preventDefault();
         var user = $(this).siblings('input[name="username"]').val();

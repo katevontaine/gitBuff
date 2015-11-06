@@ -16,6 +16,7 @@
     <header>
         <div class="User">
             <div class="col-md-3 profilepic center-block"><img alt="" class="avatarPic img-circle img-responsive" src="https://www.powerhouse-fitness.co.uk/media/catalog/product/cache/4/image/1600x1600/9df78eab33525d08d6e5fb8d27136e95/k/e/kettlebells_rangeshot.jpg">
+
             </div>
         </div>
     </header>
@@ -39,7 +40,20 @@
 
 <section class="pagecontent container hide">
   <br>
-  <nav class="clearfix specific"><ul class="col-md-12"><a href=""><li class="col-md-6"><h3>Workout</h3></li></a><a href=""><li class="col-md-6"><h3>Notes</h3></li></a></ul></nav>
+  <div class="col-md-8 colorcontent">
+  <nav class="col-md-12 clearfix specific">
+    <ul class="col-md-12"><a href="">
+      <li class="col-md-6">
+        <h3>Workout</h3>
+      </li>
+    </a>
+    <a href="">
+        <li class="col-md-6">
+          <h3>Notes</h3>
+        </li>
+      </a>
+    </ul>
+  </nav>
   <div class="notes">
     <h3>My Notes:</h3>
     <div class="notebox" ><p> this is my notes section</p></div>
@@ -49,14 +63,23 @@
 
 
 
-  <div class="workout">
+  <div class="workout hide">
   <h3>Today's Workout is:</h3>
-  <p>insert workout template here</p>
+  <div class="todaysWorkout">
+    <ul id="listWorkout">
+      <li class="WorkItem">arms</li>
+      <li class="WorkItem">legs</li>
+      <li class="WorkItem">core</li>
+      <li class="WorkItem">cardio</li>
+    </ul>
+
+  </div>
 
   <form class="noteForm" action="">
     <input style="width:250px;" type="text" name="thoughts" class="noteWO" placeholder="Today my workout was...">
     <button type="submit" name="button" class="btn notesubmit">Submit</button>
   </form>
+  </div>
   </div>
 
 

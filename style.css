@@ -48,24 +48,19 @@ section {
   display: block; }
   section .notes {
     background-color: white;
-    width: 70%;
     padding: 0;
-    margin: 0 auto;
-    border: 5px solid #A2AB2A;
-    display: block;
-    width: 68.5%; }
+    margin: 5px;
+    display: block; }
   section .workout {
     background-color: white;
-    width: 70%;
-    padding: 0;
-    margin: 0 auto;
-    border: 5px solid #A2AB2A;
-    display: block;
-    width: 68.5%; }
+    padding: 2px;
+    margin: 5px; }
 
+/******************************************
+HEADER
+*******************************************/
 nav .col-md-12 {
-  width: 70%;
-  margin: 0 auto;
+  padding: 0;
   float: none;
   position: relative; }
 
@@ -86,7 +81,8 @@ h3 {
 
 .specific {
   float: none;
-  padding-bottom: 10px; }
+  padding: 0;
+  margin: 0; }
   .specific a {
     padding-bottom: 10px; }
 
@@ -142,5 +138,20 @@ section .login {
   min-height: 100px;
   margin: 0 auto;
   padding: 0;
-  display: block;
+  float: none; }
+
+/***************************************
+WORKOUT OF THE DAY section
+***************************************/
+#listWorkout {
+  list-style: none;
+  padding: 0; }
+  #listWorkout .WorkItem {
+    font-size: 1.2em; }
+
+.colorcontent {
+  background-color: #F7840F;
+  margin: 0 auto;
+  padding: 0;
+  padding-bottom: 5px;
   float: none; }
