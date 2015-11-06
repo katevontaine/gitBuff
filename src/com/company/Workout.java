@@ -5,4 +5,5 @@ package com.company;
  */
 public class Workout {
     int id;
+    String name;
 }
