@@ -1,3 +1,6 @@
+/******************************************
+OVERALL
+*******************************************/
 header {
   background-color: #858A30;
   height: 230px; }
@@ -8,9 +11,10 @@ header {
     overflow: hidden;
     padding: 10px 0 0 0; }
     header .profilepic img {
-      margin: 0auto;
-      padding: 0;
-      border-radius: 100%; }
+      border-radius: 100%;
+      min-height: 100%;
+      min-width: 100%;
+      max-width: 150%; }
 
 .user {
   border-bottom: 3px solid white;
@@ -52,6 +56,9 @@ section {
     display: block;
     width: 68.5%; }
 
+/******************************************
+HEADER
+*******************************************/
 nav .col-md-12 {
   width: 70%;
   margin: 0 auto;
@@ -133,3 +140,12 @@ section .login {
   padding: 0;
   display: block;
   float: none; }
+
+/***************************************
+WORKOUT OF THE DAY section
+***************************************/
+#listWorkout {
+  list-style: none;
+  padding: 0; }
+  #listWorkout .WorkItem {
+    font-size: 1.2em; }
