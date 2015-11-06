@@ -1,5 +1,6 @@
 package com.company;
 
+import jodd.json.JsonSerializer;
 import spark.ModelAndView;
 import spark.Session;
 import spark.Spark;
@@ -162,8 +163,6 @@ public class Main {
             insertUser(conn, "alice", "1245", "");
         }
 
-        Workout workout = createWorkout(conn);
-
 
         Spark.externalStaticFileLocation(".");
         Spark.init();
@@ -190,6 +189,12 @@ public class Main {
                     return "";
                 })
         );
+
+        Spark.get("/randomWorkout", (request, response) -> {
+            Workout workout = createWorkout(conn);
+            JsonSerializer serializer = new JsonSerializer();
+            return serializer.serialize(workout);
+        });
 
     }
 }
