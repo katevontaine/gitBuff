@@ -6,4 +6,12 @@ package com.company;
 public class ArmWorkout {
     int id;
     String arm;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getArm() {
+        return arm;
+    }
 }

@@ -6,4 +6,12 @@ package com.company;
 public class CoreWorkout {
     int id;
     String core;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getCore() {
+        return core;
+    }
 }

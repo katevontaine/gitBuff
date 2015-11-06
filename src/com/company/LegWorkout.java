@@ -6,4 +6,12 @@ package com.company;
 public class LegWorkout {
     int id;
     String leg;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getLeg() {
+        return leg;
+    }
 }

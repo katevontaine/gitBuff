@@ -190,7 +190,8 @@ public class Main {
                 })
         );
 
-        Spark.get("/randomWorkout", (request, response) -> {
+        Spark.get("/randomWorkout",
+                (request, response) -> {
             Workout workout = createWorkout(conn);
             JsonSerializer serializer = new JsonSerializer();
             return serializer.serialize(workout);
