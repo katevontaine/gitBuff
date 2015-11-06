@@ -1,11 +1,9 @@
 (function(){
   $(document).ready(){
-
   }
 
 
-
-        page = {
+      page = {
 
             userLoggedin: "";
             online: false;

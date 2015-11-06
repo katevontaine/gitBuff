@@ -24,12 +24,14 @@ header {
 body {
   background-color: #A2AB2A;
   font-family: 'Josefin Sans', sans-serif;
-  color: #F7840F; }
+  color: #F7840F;
+  margin: 0 auto; }
 
 .btn {
   background-color: #F7840F;
   border: #F7840F;
-  color: white; }
+  color: white;
+  margin: 0 auto; }
 
 section .notes {
   background-color: white;
@@ -44,6 +46,9 @@ section .workout {
   padding: 0;
   margin: 0auto; }
 
+form {
+  padding-top: 15px; }
+
 section .login {
   background-color: white;
   width: 40%;
@@ -55,7 +60,13 @@ section .login {
   display: block;
   width: 250px;
   height: 55px;
-  font-size: 35px; }
+  font-size: 35px;
+  margin: 0 auto;
+  padding: 0; }
+
+.login button {
+  display: block;
+  margin: 0 auto; }
 
 .pagecontent {
   border: 1px solid black;

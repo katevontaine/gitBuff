@@ -34,11 +34,14 @@ body{
   background-color: #A2AB2A;
   font-family: 'Josefin Sans', sans-serif;
   color:#F7840F;
+  margin: 0 auto;
+
 }
 .btn{
   background-color: #F7840F;
   border:#F7840F;
   color:white;
+  margin: 0 auto;
 }
 section{
     .notes{
@@ -55,9 +58,10 @@ section{
       margin:0auto;
     }
 
-
 }
-
+form{
+  padding-top: 15px;
+}
 section  .login{
     background-color: white;
     width:40%;
@@ -70,6 +74,13 @@ section  .login{
   width:250px;
   height:55px;
   font-size: 35px;
+  margin:0 auto;
+  padding: 0;
+}
+.login button{
+  display: block;
+
+  margin: 0 auto;
 }
 
 .pagecontent{

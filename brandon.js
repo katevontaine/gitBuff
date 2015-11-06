@@ -1,5 +1,3 @@
-
-
 $('form').on('click','.mainLogIn', function(e){
         e.preventDefault();
         var user = $(this).siblings('input[name="username"]').val();
@@ -8,11 +6,8 @@ $('form').on('click','.mainLogIn', function(e){
           url:'/login',
           method:'POST',
           data: {username: user, password:pwd},
-
-          success: function(){
+            success: function(){
               console.log("this works");
-
           }
-
         })
 });
