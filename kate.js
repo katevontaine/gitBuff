@@ -1,4 +1,4 @@
-
+/// SUMBIT/////////////////////////////////////////////////////////
 var Herourl = "http://tiny-tiny.herokuapp.com/collections";
 
     $('form').on('click','.notesubmit', function(e){
@@ -20,8 +20,28 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
     });
 
 
+////CLICK EVENTS INSIDE APPS//////////////////////////////
 
-// $('form').on('click','.mainLogIn', function(e){
-//         e.preventDefault();
-//         $(this).siblings('section').removeClass('hide');
-//           });
+
+    $('.notes').on('click', function(event){
+      event.preventDefault();
+      $('.workouts').addClass('hide');
+      $('.notes').removeClass('hide');
+      $('.pagecontent').removeClass('hide');
+    });
+
+    $('.workouts').on('click', function(event){
+      event.preventDefault();
+      $('.notes').addClass('hide');
+      $('.workouts').removeClass('hide');
+      $('.pagecontent').removeClass('hide');
+
+    });
+
+
+
+//////////////////////////////
+
+var currDate = moment().format("MMM Do YY");
+//bower install moment --save
+//////////////////////////////

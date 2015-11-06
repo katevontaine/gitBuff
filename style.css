@@ -48,7 +48,7 @@ section {
   display: block; }
   section .notes {
     background-color: white;
-    width: 70%;
+    width: 90%;
     padding: 0;
     margin: 0 auto;
     border: 5px solid #A2AB2A;
@@ -56,7 +56,7 @@ section {
     width: 68.5%; }
   section .workout {
     background-color: white;
-    width: 70%;
+    width: 90%;
     padding: 0;
     margin: 0 auto;
     border: 5px solid #A2AB2A;
@@ -143,4 +143,5 @@ section .login {
   margin: 0 auto;
   padding: 0;
   display: block;
-  float: none; }
+  float: none;
+  width: 80%; }
