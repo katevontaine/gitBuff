@@ -28,6 +28,8 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
       event.preventDefault();
       $('.workout').addClass('hide');
       $('.notes').removeClass('hide');
+      $('.noteBG').css("background-color","#F7840F");
+      $('.workBG').css("background-color","#A2AB2A");
       // $('.pagecontent').removeClass('hide');
     });
 
@@ -38,7 +40,8 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
       $('.workout').removeClass('hide');
       // $('.workout').addClass('display');
       $('.pagecontent').removeClass('hide');
-
+      $('.workBG').css("background-color","#F7840F");
+      $('.noteBG').css("background-color","#A2AB2A");
     });
 
 
