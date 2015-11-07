@@ -214,6 +214,9 @@ section{
   padding:0;
   .WorkItem{
     font-size:1.2em;
+    margin-top: 15px;
+    padding:15px;
+    border-top:$tangerine 1px solid;
 
   }
 }
@@ -226,4 +229,9 @@ section{
   float:none;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+}
+
+.worktype{
+  text-decoration: underline;
+
 }
