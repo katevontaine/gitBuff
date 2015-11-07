@@ -16,7 +16,7 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
        failure:function(){
          console.log("didn't work");
        }
-     })
+     });
     });
 
 
@@ -24,7 +24,6 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
 
 
     $('nav').on('click',".not", function(event){
-      console.log('clicked');
       event.preventDefault();
       $('.workout').addClass('hide');
       $('.notes').removeClass('hide');
@@ -34,7 +33,6 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
     });
 
     $('nav').on('click',".work", function(event){
-      console.log('clicked');
       event.preventDefault();
       $('.notes').addClass('hide');
       $('.workout').removeClass('hide');

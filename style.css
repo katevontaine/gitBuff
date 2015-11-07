@@ -158,7 +158,10 @@ section {
   list-style: none;
   padding: 0; }
   #listWorkout .WorkItem {
-    font-size: 1.2em; }
+    font-size: 1.2em;
+    margin-top: 15px;
+    padding: 15px;
+    border-top: #F7840F 1px solid; }
 
 .colorcontent {
   background-color: #F7840F;
@@ -168,3 +171,6 @@ section {
   float: none;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px; }
+
+.worktype {
+  text-decoration: underline; }
