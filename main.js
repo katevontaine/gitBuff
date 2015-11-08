@@ -10,7 +10,7 @@
 
         init:function(){
               page.getWorkOut();
-
+              page.events();
             },
 
         styling:function(){
