@@ -55,22 +55,3 @@
     //    },
     //  });
     // });
-
-
-
-      // $('.noteable').on('click','.deleteNote', function(e){
-      //     e.preventDefault();
-      //     var deleteItem = $(this);
-      //     var delId = deleteItem.closest('div').data('index');
-      //     $.ajax({
-      //       url:'https://tiny-tiny.herokuapp.com/collections/notes/'+delId,
-      //       method:'DELETE',
-      //       success:funtion(el){
-      //         console.log('Success! ', + el);
-      //         deleteItem.closest('div').remove();
-      //       },
-      //       failure:function(){
-      //
-      //       }
-      //     });
-      // });

@@ -31,29 +31,29 @@
     // })
 };
 
-$('.noteable').on('click','.deleteNote',function (event) {
-  var theNote = $(this).siblings('input[name="thoughts"]').val();
-
-var deleteNotes = function(){
-     $.ajax({
-       url: Herourl + '/mynotes' + '/'+ noteID,
-       method:'DELETE',
-
-       success: function(data){
-         $('.deleteNote').closest('div').remove();
-         console.log('got clicked', data);
-
-       },
-       failure: function(data){
-       }
-     });
-   }
-     var $deleteBtn = $(this)
-     var noteID = $deleteBtn.closest('div').data('index');
-     console.log('1delete clicked');
-     deleteNotes();
-
-});
+// $('.noteable').on('click','.deleteNote',function (event) {
+//   var theNote = $(this).siblings('input[name="thoughts"]').val();
+// 
+// var deleteNotes = function(){
+//      $.ajax({
+//        url:"/delete-note",
+//        method:'DELETE',
+//
+//        success: function(data){
+//          $('.deleteNote').closest('div').remove();
+//          console.log('got clicked', data);
+//
+//        },
+//        failure: function(data){
+//        }
+//      });
+//    }
+//
+//      var noteID = $deleteBtn.closest('div').data('index');
+//      console.log('1delete clicked');
+//      deleteNotes();
+//
+// });
 
 
 ////CLICK EVENTS INSIDE APPS//////////////////////////////

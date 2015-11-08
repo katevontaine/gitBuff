@@ -73,6 +73,26 @@
              });
            });
 
+           $('.noteable').on('click','.deleteNote', function(e){
+               e.preventDefault();
+               var deleteItem = $(this);
+               var noteId = deleteItem.closest('div').data('index');
+               console.log(noteId);
+               $.ajax({
+                 url:"/delete-note",
+                 method:'POST',
+                 data:{noteId: noteId},
+                 success:function(){
+                   console.log("Success: ");
+                   deleteItem.closest('div').remove();
+                 },
+                 failure:function(){
+                   console.log("didn't work");
+                 },
+
+               });
+           });
+
 
 
         },
@@ -124,8 +144,7 @@
           url:'/notes',
           success: function(data){
             var newDat = (JSON.parse(data));
-            console.log(newDat);
-                page.loadTemplate($('.noteable'), newDat, 'noteTemp');
+            page.loadTemplate($('.noteable'), newDat, 'noteTemp');
           },
         });
       },
