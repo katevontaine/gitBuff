@@ -44,6 +44,7 @@
                             'input[name="password"]'
                         ).val("");
                         page.getWorkOut();
+                        page.getNote();
                     },
                     failure: function(data) {
                         console.log(
@@ -53,6 +54,24 @@
 
                 });
             });
+
+            $('form').on('click','.notesubmit', function(e){
+             e.preventDefault();
+             var theNote = $(this).siblings('input[name="thoughts"]').val();
+             $.ajax({
+               url:'/create-note',
+               method:'POST',
+               data: {note: theNote},
+               success:function(el){
+                 console.log("Success: "+ el);
+                 $('input[name="thoughts"]').val("");
+                 page.getNote();
+               },
+               failure:function(){
+                 console.log("didn't work");
+               },
+             });
+           });
 
 
 
@@ -98,6 +117,18 @@
                 },
             });
         },
+
+        getNote: function(){
+        $.ajax({
+          method:'GET',
+          url:'/notes',
+          success: function(data){
+            var newDat = (JSON.parse(data));
+            console.log(newDat);
+                page.loadTemplate($('.noteable'), newDat, 'noteTemp');
+          },
+        });
+      },
 
 
 

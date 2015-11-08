@@ -1,11 +1,11 @@
 package com.company;
 
 import jodd.json.JsonSerializer;
-import spark.ModelAndView;
 import spark.Session;
 import spark.Spark;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Main {
     static LocalDateTime lastWorkoutTime = null;
@@ -161,6 +161,22 @@ public class Main {
         return workout;
     }
 
+    public static ArrayList<Note> selectNotes(Connection conn) throws SQLException {
+        ArrayList<Note> countries = new ArrayList();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM notes");
+        ResultSet results = stmt.executeQuery();
+        while (results.next()) {
+            Note note = new Note();
+            note.id = results.getInt("id");
+            note.text = results.getString("note");
+            note.noteDate = results.getTimestamp("note_date").toLocalDateTime();
+            countries.add(note);
+        }
+        return countries;
+    }
+
+    //**************************************************************************************************************//
+
 
     public static void main(String[] args) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./main");
@@ -195,6 +211,10 @@ public class Main {
                     } else if (!password.equals(user.password)) {
                         Spark.halt(403);
                     }
+
+                    Session session = request.session();
+                    session.attribute("username", username);
+
                     return "";
                 })
         );
@@ -212,8 +232,11 @@ public class Main {
         Spark.post(
                 "/create-note",
                 ((request, response) -> {
-                    String id = request.queryParams("userId");
-                    int userId = Integer.valueOf(id);
+                    Session session = request.session();
+                    String username = session.attribute("username");
+                    User me = selectUser(conn, username);
+                    int userId = me.id;
+
                     String note = request.queryParams("note");
                     LocalDateTime noteDate = LocalDateTime.now();
                     try {
@@ -223,9 +246,14 @@ public class Main {
 
                     }
                     return "";
-
                 })
         );
 
+        Spark.get("/notes",
+                (request, response) -> {
+                        JsonSerializer serializer = new JsonSerializer();
+                        String json = serializer.serialize(selectNotes(conn));
+                        return json;
+                });
         }
 }
