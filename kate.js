@@ -1,23 +1,25 @@
 /// SUMBIT/////////////////////////////////////////////////////////
-var Herourl = "http://tiny-tiny.herokuapp.com/collections";
+// var Herourl = "http://tiny-tiny.herokuapp.com/collections";
 
-    $('form').on('click','.notesubmit', function(e){
-     e.preventDefault();
-     var theNote = $(this).siblings('input[name="thoughts"]').val();
-     $.ajax({
-       url:Herourl + "/notes",
-       method:'POST',
-       data: {notes: theNote},
+$('form').on('click','.notesubmit', function(e){
+ e.preventDefault();
+ var theNote = $(this).siblings('input[name="thoughts"]').val();
+ var theDate =
+ $.ajax({
+   url:"/create-note",
+   method:'POST',
+   data: {notes: theNote},
 
-       success:function(el){
-         console.log("Success: "+ el);
-         $('input[name="thoughts"]').val("");
-       },
-       failure:function(){
-         console.log("didn't work");
-       }
-     });
-    });
+   success:function(el){
+     console.log("Success: "+ el);
+     $('input[name="thoughts"]').val("");
+     
+   },
+   failure:function(){
+     console.log("didn't work");
+   },
+ });
+});
 
 
 ////CLICK EVENTS INSIDE APPS//////////////////////////////

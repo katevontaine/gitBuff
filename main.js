@@ -9,7 +9,6 @@
 
 
         init: function() {
-            page.getWorkOut();
             page.events();
 
         },
@@ -33,8 +32,6 @@
                         password: pwd
                     },
                     success: function(data) {
-                        console.log(
-                            "this works");
                         $('.pagecontent').removeClass(
                             'hide');
                         $('.login').addClass(
@@ -46,6 +43,7 @@
                         $(
                             'input[name="password"]'
                         ).val("");
+                        page.getWorkOut();
                     },
                     failure: function(data) {
                         console.log(
