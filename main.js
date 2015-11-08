@@ -10,6 +10,7 @@
 
         init: function() {
             page.events();
+            page.getQuote();
 
         },
 
@@ -178,7 +179,20 @@
         },
 
 
-
+        getQuote: function(){
+             $.ajax({
+               method:'GET',
+               url:'/random-quote',
+               success: function(data){
+                 var quoteArr = [];
+                 var firstDat = JSON.parse(data);
+                 quoteArr.push(JSON.parse(firstDat));
+                 _.each(quoteArr, function(el){
+                   $('.quote').html("<h2 class="+'quoteHs'+">"+ el.quote +"</h2>");
+                 });
+               },
+             });
+             },
 
 
 
