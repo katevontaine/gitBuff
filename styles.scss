@@ -171,6 +171,7 @@ section{
       padding: 20px;
       margin:5px;
       display: block;
+      height:460px;
       h3{
         margin: 0 auto;
         text-align: center;
@@ -234,4 +235,25 @@ section{
 .worktype{
   text-decoration: underline;
 
+}
+
+/***************************************
+NOTES
+***************************************/
+
+
+.noteable{
+  height:360px;
+  overflow:scroll;
+}
+
+
+footer{
+
+  position: absolute;
+  bottom:0;
+  margin-top:50px;
+  text-align: center;
+  color:black;
+  font-size: 1.2em;
 }
