@@ -10,7 +10,6 @@
 
         init: function() {
             page.events();
-
         },
 
         styling: function() {
@@ -71,6 +70,23 @@
                  console.log("didn't work");
                },
              });
+           });
+
+           $('nav').on('click',".not", function(event){
+             event.preventDefault();
+             $('.workout').addClass('hide');
+             $('.notes').removeClass('hide');
+             $('.noteBG').css("background-color","#F7840F");
+             $('.workBG').css("background-color","#A2AB2A");
+           });
+
+           $('nav').on('click',".work", function(event){
+             event.preventDefault();
+             $('.notes').addClass('hide');
+             $('.workout').removeClass('hide');
+             $('.pagecontent').removeClass('hide');
+             $('.workBG').css("background-color","#F7840F");
+             $('.noteBG').css("background-color","#A2AB2A");
            });
 
            $('.noteable').on('click','.deleteNote', function(e){
@@ -149,7 +165,15 @@
         });
       },
 
-
+      getQuote: function(){
+      $.ajax({
+        method:'GET',
+        url:'/random-quote',
+        success: function(data){
+          $('.quote').html("<h2>" + data "</h2");
+        },
+      });
+      },
 
 
 
