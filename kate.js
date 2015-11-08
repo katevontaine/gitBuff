@@ -16,7 +16,7 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
        failure:function(){
          console.log("didn't work");
        }
-     })
+     });
     });
 
 
@@ -24,21 +24,22 @@ var Herourl = "http://tiny-tiny.herokuapp.com/collections";
 
 
     $('nav').on('click',".not", function(event){
-      console.log('clicked');
       event.preventDefault();
       $('.workout').addClass('hide');
       $('.notes').removeClass('hide');
+      $('.noteBG').css("background-color","#F7840F");
+      $('.workBG').css("background-color","#A2AB2A");
       // $('.pagecontent').removeClass('hide');
     });
 
     $('nav').on('click',".work", function(event){
-      console.log('clicked');
       event.preventDefault();
       $('.notes').addClass('hide');
       $('.workout').removeClass('hide');
       // $('.workout').addClass('display');
       $('.pagecontent').removeClass('hide');
-
+      $('.workBG').css("background-color","#F7840F");
+      $('.noteBG').css("background-color","#A2AB2A");
     });
 
 

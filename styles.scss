@@ -4,140 +4,36 @@ $white:white;
 $tangerine: #F7840F;
 
 
-header{
-  background-color:$darkGreen;
-  height: 230px;
-
-  .profilepic{
-    display:block;
-    margin:0 auto;
-    // border-radius:100%;
-    // border:2px white solid;
-    float:none;
-    overflow:hidden;
-    padding: 10px 0 0 0;
-img{
-  margin: 0 auto;
-  padding: 0;
-  border-radius: 100%;
-  max-height: 200px;
-}
-  }
-}
+/******************************************
+OVERALL BODY
+*******************************************/
 
 
 
-.avatarPic{
-  margin: 0auto;
-  padding: 0;
-}
-.user{
-  background-color:#858A30;
-  border-bottom: 3px solid white;
-  // padding:20px 0 20px 0;
-  // height: 350px;
-  // position: relative;
-}
-.quote{
-  position: relative;
-  background-color: white;
-  text-align: center;
-  // padding: 5px 0 5px 0;
-
-}
 body{
-  background-color: #A2AB2A;
+  background-color: $medGreen;
   font-family: 'Josefin Sans', sans-serif;
-  color:#F7840F;
+  color:$tangerine;
   margin: 0 auto;
 
 }
 .btn{
-  background-color: #F7840F;
-  border:#F7840F;
+  background-color: $tangerine;
+  border:$tangerine;
   color:white;
   margin: 0 auto;
 }
 .btn:hover{
   background-color: white;
   border: white;
-  color:#F7840F;
+  color:$tangerine;
   margin: 0 auto;
 }
-section{
-  display: block;
-    .notes{
-      background-color: white;
-      padding: 0;
-      margin:5px;
-      display: block;
 
-    }
-    .workout{
-      background-color: white;
-      padding: 2px;
-      margin:5px;
-
-
-    }
-
-}
-
-/******************************************
-HEADER
-*******************************************/
-
-nav .col-md-12{
-  padding:0;
-  float:none;
-  position: relative;
-}
-nav{
-  text-decoration: none;
-  float: none;
-  li{
-    display: inline-block;
-    text-align: center;
-    background-color: #F7840F;
-    text-decoration: none;
-    color: white;
-    float: none;
-    height: 40px;
-
-  }
-}
 h3{
   margin-top: 3%;
 }
-.specific{
-   float: none;
-    padding:0;
-    margin:0;
-    a{
-      padding-bottom: 10px;
-    }
- }
 
-.notes h3{
-  margin: 0 auto;
-  text-align: center;
-}
-.notes p{
-  margin: 0 auto;
-  text-align: center;
-}
-.workout h3{
-  margin: 0 auto;
-  text-align: center;
-}
-.workout p{
-  margin: 0 auto;
-  text-align: center;
-}
-.workout form{
-  margin: 0 auto;
-  text-align: center;
-}
 ul li{
   margin: 0 auto;
   text-align: center;
@@ -146,6 +42,52 @@ ul li{
 form{
   padding-top: 15px;
 }
+
+
+
+/******************************************
+HEADER
+*******************************************/
+
+
+
+header{
+  background-color:$darkGreen;
+  height: 230px;
+
+  .profilepic{
+    display:block;
+    margin:0 auto;
+    float:none;
+    overflow:hidden;
+    padding: 10px 0 0 0;
+      img{
+        margin: 0 auto;
+        padding: 0;
+        border-radius: 100%;
+        max-height: 200px;
+      }
+  }
+}
+
+.user{
+  background-color:$darkGreen;
+  border-bottom: 3px solid white;
+}
+.quote{
+  position: relative;
+  background-color: white;
+  text-align: center;
+}
+
+
+
+/******************************************
+LOGIN SCREEN
+*******************************************/
+
+
+
 section  .login{
     background-color: white;
     width:40%;
@@ -167,37 +109,129 @@ section  .login{
   margin: 0 auto;
 }
 
+
+
+/***************************************
+  NAV
+***************************************/
+
+
+
+.noteBG{
+  background-color:$tangerine;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 50px;
+}
+.workBG{
+  background-color:$medGreen;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 50px;
+}
+nav .col-md-12{
+  padding:0;
+  float:none;
+  position: relative;
+}
+nav{
+  text-decoration: none;
+  float: none;
+  li{
+    display: inline-block;
+    text-align: center;
+    background-color: $tangerine;
+    text-decoration: none;
+    color: white;
+    float: none;
+    height: 40px;
+
+  }
+}
+
+
+
+/***************************************
+PAGE CONTENT SECTION
+***************************************/
+
+
+
 .pagecontent{
-  border:5px solid #A2AB2A;
+  border:5px solid $medGreen;
   min-height:100px;
   margin: 0 auto;
   padding: 0;
   float: none;
   width: 80%;
-  .notebox{
-
-  }
-  // div{
-  //   min-height:300px;
-  // }
 }
 
-/***************************************
-WORKOUT OF THE DAY section
-***************************************/
+section{
+  display: block;
+    .notes{
+      background-color: white;
+      padding: 20px;
+      margin:5px;
+      display: block;
+      h3{
+        margin: 0 auto;
+        text-align: center;
+      }
+      p{
+        margin: 0 auto;
+        text-align: center;
+      }
+
+    }
+    .workout{
+      background-color: white;
+      padding: 20px;
+      margin:5px;
+        h3{
+          margin: 0 auto;
+          text-align: center;
+        }
+        p{
+          margin: 0 auto;
+          text-align: center;
+        }
+        form{
+          margin: 0 auto;
+          text-align: center;
+        }
+    }
+}
+
+.specific{
+   float: none;
+    padding:0;
+    margin:0;
+    a{
+      padding-bottom: 10px;
+    }
+ }
 
 #listWorkout{
   list-style:none;
   padding:0;
   .WorkItem{
     font-size:1.2em;
+    margin-top: 15px;
+    padding:15px;
+    border-top:$tangerine 1px solid;
+
   }
 }
 
 .colorcontent{
-  background-color:#F7840F;
+  background-color:$tangerine;
   margin:0 auto;
   padding:0;
   padding-bottom:5px;
   float:none;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.worktype{
+  text-decoration: underline;
+
 }
