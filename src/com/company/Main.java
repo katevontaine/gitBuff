@@ -1,11 +1,11 @@
 package com.company;
 
 import jodd.json.JsonSerializer;
-import spark.ModelAndView;
 import spark.Session;
 import spark.Spark;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Main {
     static LocalDateTime lastWorkoutTime = null;
@@ -19,7 +19,8 @@ public class Main {
         stmt.execute("CREATE TABLE IF NOT EXISTS legs (id IDENTITY(1,1) , leg VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS cardios (id IDENTITY(1,1) , cardio VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS cores (id IDENTITY(1,1) , core VARCHAR)");
-
+        stmt.execute("CREATE TABLE IF NOT EXISTS notes (id IDENTITY(1,1) , user_id INT, " +
+                "note VARCHAR , note_date TIMESTAMP)");
     }
 
     public static void insertUser (Connection conn , String name, String password , String url) throws SQLException {
@@ -42,6 +43,14 @@ public class Main {
             user.password = results.getString("password");
         }
         return user;
+    }
+
+    public static void insertNote(Connection conn , int userId , String text , LocalDateTime noteDate) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO notes Values (NULL , ? , ? , ?)");
+        stmt.setInt(1, userId);
+        stmt.setString(2, text);
+        stmt.setTimestamp(3, Timestamp.valueOf(noteDate));
+        stmt.execute();
     }
 
     public static void insertArm(Connection conn) throws SQLException {
@@ -152,6 +161,22 @@ public class Main {
         return workout;
     }
 
+    public static ArrayList<Note> selectNotes(Connection conn) throws SQLException {
+        ArrayList<Note> countries = new ArrayList();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM notes");
+        ResultSet results = stmt.executeQuery();
+        while (results.next()) {
+            Note note = new Note();
+            note.id = results.getInt("id");
+            note.text = results.getString("note");
+            note.noteDate = results.getTimestamp("note_date").toLocalDateTime();
+            countries.add(note);
+        }
+        return countries;
+    }
+
+    //**************************************************************************************************************//
+
 
     public static void main(String[] args) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./main");
@@ -161,6 +186,8 @@ public class Main {
         if (selectUser(conn, "alice") == null) {
             insertUser(conn, "alice", "1245", "");
         }
+
+        insertNote(conn, 0, "This is a note", LocalDateTime.now());
 
 
         Spark.externalStaticFileLocation(".");
@@ -184,6 +211,10 @@ public class Main {
                     } else if (!password.equals(user.password)) {
                         Spark.halt(403);
                     }
+
+                    Session session = request.session();
+                    session.attribute("username", username);
+
                     return "";
                 })
         );
@@ -196,6 +227,33 @@ public class Main {
                     }
                     JsonSerializer serializer = new JsonSerializer();
                     return serializer.serialize(lastWorkout);
+                });
+
+        Spark.post(
+                "/create-note",
+                ((request, response) -> {
+                    Session session = request.session();
+                    String username = session.attribute("username");
+                    User me = selectUser(conn, username);
+                    int userId = me.id;
+
+                    String note = request.queryParams("note");
+                    LocalDateTime noteDate = LocalDateTime.now();
+                    try {
+                        insertNote(conn, userId , note , noteDate );
+                    }catch (Exception e){
+                        System.out.println("failure to create note");
+
+                    }
+                    return "";
+                })
+        );
+
+        Spark.get("/notes",
+                (request, response) -> {
+                        JsonSerializer serializer = new JsonSerializer();
+                        String json = serializer.serialize(selectNotes(conn));
+                        return json;
                 });
         }
 }
