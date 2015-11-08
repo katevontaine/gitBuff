@@ -273,10 +273,11 @@ NOTES
 .deleteNote{
   float:right;
 }
-
+/***************************************
+FOOTER
+***************************************/
 
 .footer{
-
   position: relative;
   width:100%;
   bottom:0;
@@ -284,5 +285,8 @@ NOTES
   text-align: center;
   color:black;
   font-size: 1.2em;
+}
 
+.copyright{
+  opacity: 0.3;
 }

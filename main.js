@@ -100,6 +100,7 @@
                  $('.notes').removeClass('hide');
                  $('.noteBG').css("background-color","#F7840F");
                  $('.workBG').css("background-color","#A2AB2A");
+                  page.getNote();
                });
 
                $('nav').on('click',".work", function(event){
@@ -109,6 +110,7 @@
                  $('.pagecontent').removeClass('hide');
                  $('.workBG').css("background-color","#F7840F");
                  $('.noteBG').css("background-color","#A2AB2A");
+                 page.getWorkout();
                });
 
 
