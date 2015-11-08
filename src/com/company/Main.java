@@ -171,6 +171,8 @@ public class Main {
             insertUser(conn, "alice", "1245", "");
         }
 
+        insertNote(conn, 0, "This is a note", LocalDateTime.now());
+
 
         Spark.externalStaticFileLocation(".");
         Spark.init();
@@ -213,9 +215,8 @@ public class Main {
                     String id = request.queryParams("userId");
                     int userId = Integer.valueOf(id);
                     String note = request.queryParams("note");
-                    String noteDateStr = request.queryParams("noteDate");
+                    LocalDateTime noteDate = LocalDateTime.now();
                     try {
-                        LocalDateTime noteDate = LocalDateTime.parse(noteDateStr);
                         insertNote(conn, userId , note , noteDate );
                     }catch (Exception e){
                         System.out.println("failure to create note");
@@ -225,7 +226,6 @@ public class Main {
 
                 })
         );
-
 
         }
 }
