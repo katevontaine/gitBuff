@@ -268,7 +268,7 @@ public class Main {
 
         Spark.get("/randomWorkout",
                 (request, response) -> {
-                    if (lastWorkoutTime == null || lastWorkoutTime.isBefore(LocalDateTime.now().minusDays(1).minusHours(23).minusMinutes(59).minusSeconds(30))) {
+                    if (lastWorkoutTime == null || lastWorkoutTime.isBefore(LocalDateTime.now().minusHours(23).minusMinutes(59).minusSeconds(30))) {
                         lastWorkoutTime = LocalDateTime.now();
                         lastWorkout = createWorkout(conn);
                     }
