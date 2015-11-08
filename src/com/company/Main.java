@@ -53,6 +53,13 @@ public class Main {
         stmt.execute();
     }
 
+    public static void deleteNote (Connection conn , int id) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM notes WHERE id = ?");
+        stmt.setInt(1, id);
+        stmt.execute();
+
+    }
+
     public static void insertArm(Connection conn) throws SQLException {
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO arms VALUES (NULL, ?)");
         stmt.setString(1, "Curls");
@@ -255,5 +262,21 @@ public class Main {
                         String json = serializer.serialize(selectNotes(conn));
                         return json;
                 });
+
+        Spark.post(
+                "/delete-note",
+                ((request, response) -> {
+                    String id = request.queryParams("noteId");
+                    try {
+                        int idNum = Integer.valueOf(id);
+                        deleteNote(conn, idNum);
+                    }catch (Exception e){
+
+                    }
+                    return "";
+                })
+        );
         }
+
+
 }
