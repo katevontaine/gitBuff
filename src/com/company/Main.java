@@ -19,7 +19,8 @@ public class Main {
         stmt.execute("CREATE TABLE IF NOT EXISTS legs (id IDENTITY(1,1) , leg VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS cardios (id IDENTITY(1,1) , cardio VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS cores (id IDENTITY(1,1) , core VARCHAR)");
-
+        stmt.execute("CREATE TABLE IF NOT EXISTS notes (id IDENTITY(1,1) , user_id INT, " +
+                "note VARCHAR , note_date TIMESTAMP)");
     }
 
     public static void insertUser (Connection conn , String name, String password , String url) throws SQLException {
@@ -42,6 +43,14 @@ public class Main {
             user.password = results.getString("password");
         }
         return user;
+    }
+
+    public static void insertNote(Connection conn , int userId , String text , LocalDateTime noteDate) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO notes Values (NULL , ? , ? , ?)");
+        stmt.setInt(1, userId);
+        stmt.setString(2, text);
+        stmt.setTimestamp(3, Timestamp.valueOf(noteDate));
+        stmt.execute();
     }
 
     public static void insertArm(Connection conn) throws SQLException {
@@ -197,5 +206,26 @@ public class Main {
                     JsonSerializer serializer = new JsonSerializer();
                     return serializer.serialize(lastWorkout);
                 });
+
+        Spark.post(
+                "/create-note",
+                ((request, response) -> {
+                    String id = request.queryParams("userId");
+                    int userId = Integer.valueOf(id);
+                    String note = request.queryParams("note");
+                    String noteDateStr = request.queryParams("noteDate");
+                    try {
+                        LocalDateTime noteDate = LocalDateTime.parse(noteDateStr);
+                        insertNote(conn, userId , note , noteDate );
+                    }catch (Exception e){
+                        System.out.println("failure to create note");
+
+                    }
+                    return "";
+
+                })
+        );
+
+
         }
 }
