@@ -21,6 +21,7 @@ public class Main {
         stmt.execute("CREATE TABLE IF NOT EXISTS cores (id IDENTITY(1,1) , core VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS notes (id IDENTITY(1,1) , user_id INT, " +
                 "note VARCHAR , note_date TIMESTAMP)");
+        stmt.execute("CREATE TABLE IF NOT EXISTS quotes (id IDENTITY (1,1), quote VARCHAR)");
     }
 
     public static void insertUser (Connection conn , String name, String password , String url) throws SQLException {
@@ -58,6 +59,30 @@ public class Main {
         stmt.setInt(1, id);
         stmt.execute();
 
+    }
+
+    public static void insertQuote(Connection conn) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO quotes VALUES (NULL, ?)");
+        stmt.setString(1, "Success is most often achieved by those who don't know that failure is inevitable -- Coco Chanel");
+        stmt.execute();
+        stmt.setString(1, "Things work out best for those who make the best of how things work out -- John Wooden");
+        stmt.execute();
+        stmt.setString(1, "Courage is grace under pressure -- Ernest Hemingway");
+        stmt.execute();
+        stmt.setString(1, "If you are not willing to risk the usual, you will have to settle for the ordinary -- Jim Rohn");
+        stmt.execute();
+        stmt.setString(1, "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning -- Albert Einstein");
+        stmt.execute();
+        stmt.setString(1, "All our dreams can come true if we have the courage to pursue them -- Walt Disney");
+        stmt.execute();
+        stmt.setString(1, "It does not matter how slowly you go, so long as you do not stop -- Confucius");
+        stmt.execute();
+        stmt.setString(1, "Success is walking from failure to failure with no loss of enthusiasm -- Winston Churchill");
+        stmt.execute();
+        stmt.setString(1, "Someone is sitting in the shade today because someone planted a tree a long time ago -- Warren Buffett");
+        stmt.execute();
+        stmt.setString(1, "Don't cry because it's over, smile because it happened -- Dr. Seuss");
+        stmt.execute();
     }
 
     public static void insertArm(Connection conn) throws SQLException {
@@ -115,6 +140,21 @@ public class Main {
         stmt.setString(1, "Flutter kick");
         stmt.execute();
     }
+
+    public static Quote createQuote(Connection conn) throws SQLException {
+        Statement stmt = conn.createStatement();
+        Quote quote = null;
+        insertQuote(conn);
+
+        ResultSet resultsQuote = stmt.executeQuery("SELECT * FROM quotes ORDER BY RAND() LIMIT 1");
+        if(resultsQuote.next()) {
+            quote = new Quote();
+            quote.id =resultsQuote.getInt("id");
+            quote.quote = resultsQuote.getString("quote");
+        }
+        return quote;
+    }
+
 
     public static Workout createWorkout(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
@@ -228,7 +268,7 @@ public class Main {
 
         Spark.get("/randomWorkout",
                 (request, response) -> {
-                    if (lastWorkoutTime == null || lastWorkoutTime.isBefore(LocalDateTime.now().minusDays(1))) {
+                    if (lastWorkoutTime == null || lastWorkoutTime.isBefore(LocalDateTime.now().minusSeconds(10))){
                         lastWorkoutTime = LocalDateTime.now();
                         lastWorkout = createWorkout(conn);
                     }
@@ -276,7 +316,13 @@ public class Main {
                     return "";
                 })
         );
-        }
 
+        Spark.get("/random-quote",
+                (request, response) -> {
+                    JsonSerializer serializer = new JsonSerializer(); //remember to create getters in Country class
+                    String json = serializer.serialize(createQuote(conn));
+                    return serializer.serialize(json);
+                });
+        }
 
 }

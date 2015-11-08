@@ -10,6 +10,8 @@
 
         init: function() {
             page.events();
+            page.getQuote();
+
         },
 
         styling: function() {
@@ -93,13 +95,11 @@
                e.preventDefault();
                var deleteItem = $(this);
                var noteId = deleteItem.closest('div').data('index');
-               console.log(noteId);
                $.ajax({
                  url:"/delete-note",
                  method:'POST',
                  data:{noteId: noteId},
                  success:function(){
-                   console.log("Success: ");
                    deleteItem.closest('div').remove();
                  },
                  failure:function(){
@@ -108,6 +108,25 @@
 
                });
            });
+
+               $('nav').on('click',".not", function(event){
+                 event.preventDefault();
+                 $('.workout').addClass('hide');
+                 $('.notes').removeClass('hide');
+                 $('.noteBG').css("background-color","#F7840F");
+                 $('.workBG').css("background-color","#A2AB2A");
+                  page.getNote();
+               });
+
+               $('nav').on('click',".work", function(event){
+                 event.preventDefault();
+                 $('.notes').addClass('hide');
+                 $('.workout').removeClass('hide');
+                 $('.pagecontent').removeClass('hide');
+                 $('.workBG').css("background-color","#F7840F");
+                 $('.noteBG').css("background-color","#A2AB2A");
+                 page.getWorkOut();
+               });
 
 
 
@@ -160,20 +179,40 @@
           url:'/notes',
           success: function(data){
             var newDat = (JSON.parse(data));
-            page.loadTemplate($('.noteable'), newDat, 'noteTemp');
+            page.loadNoteTemp($('.noteable'), newDat, 'noteTemp');
           },
         });
       },
 
-      getQuote: function(){
-      $.ajax({
-        method:'GET',
-        url:'/random-quote',
-        success: function(data){
-          $('.quote').html("<h2>" + data "</h2");
+
+          loadNoteTemp: function($loc, el, tmpl){
+            var ourhtml = "";
+            var thistmple = page.getTemplate(tmpl);
+              $loc.html("");
+            _.each(el, function(curel) {
+                ourhtml = thistmple(curel);
+                $loc.prepend(ourhtml);
+            });
+
         },
-      });
-      },
+
+
+        getQuote: function(){
+             $.ajax({
+               method:'GET',
+               url:'/random-quote',
+               success: function(data){
+                 var quoteArr = [];
+                 var firstDat = JSON.parse(data);
+                 quoteArr.push(JSON.parse(firstDat));
+                 _.each(quoteArr, function(el){
+                   $('.quote').html("<h2 class="+'quoteHs'+">"+ el.quote +"</h2>");
+                 });
+               },
+             });
+             },
+
+
 
 
 
