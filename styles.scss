@@ -248,9 +248,10 @@ NOTES
 }
 
 
-footer{
+.footer{
 
-  position: absolute;
+  position: relative;
+  width:100%;
   bottom:0;
   margin-top:50px;
   text-align: center;

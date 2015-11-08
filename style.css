@@ -183,8 +183,9 @@ NOTES
   height: 360px;
   overflow: scroll; }
 
-footer {
-  position: absolute;
+.footer {
+  position: relative;
+  width: 100%;
   bottom: 0;
   margin-top: 50px;
   text-align: center;
