@@ -93,6 +93,23 @@
                });
            });
 
+               $('nav').on('click',".not", function(event){
+                 event.preventDefault();
+                 $('.workout').addClass('hide');
+                 $('.notes').removeClass('hide');
+                 $('.noteBG').css("background-color","#F7840F");
+                 $('.workBG').css("background-color","#A2AB2A");
+               });
+
+               $('nav').on('click',".work", function(event){
+                 event.preventDefault();
+                 $('.notes').addClass('hide');
+                 $('.workout').removeClass('hide');
+                 $('.pagecontent').removeClass('hide');
+                 $('.workBG').css("background-color","#F7840F");
+                 $('.noteBG').css("background-color","#A2AB2A");
+               });
+
 
 
         },
@@ -144,10 +161,24 @@
           url:'/notes',
           success: function(data){
             var newDat = (JSON.parse(data));
-            page.loadTemplate($('.noteable'), newDat, 'noteTemp');
+            page.loadNoteTemp($('.noteable'), newDat, 'noteTemp');
           },
         });
       },
+
+          loadNoteTemp: function($loc, el, tmpl){
+            var ourhtml = "";
+            var thistmple = page.getTemplate(tmpl);
+              $loc.html("");
+            _.each(el, function(curel) {
+                ourhtml = thistmple(curel);
+                $loc.prepend(ourhtml);
+            });
+
+        },
+
+
+
 
 
 
