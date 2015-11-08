@@ -243,8 +243,27 @@ NOTES
 
 
 .noteable{
-  height:360px;
+  height:320px;
   overflow:scroll;
+  margin:10px;
+  border:1px solid $tangerine;
+  padding:10px;
+  background-color:#EFEFEF;
+  form{
+    padding-top: 15px;
+    padding-bottom:15px;
+  }
+  .noteItem{
+    padding-top: 5px;
+    margin-bottom: 15px;
+    p{
+      text-align: left;
+    };
+    span{
+      font-weight:bold;
+      margin-bottom:2px;
+    }
+  }
 }
 
 
@@ -257,4 +276,5 @@ NOTES
   text-align: center;
   color:black;
   font-size: 1.2em;
+
 }

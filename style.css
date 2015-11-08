@@ -180,8 +180,23 @@ section {
 NOTES
 ***************************************/
 .noteable {
-  height: 360px;
-  overflow: scroll; }
+  height: 320px;
+  overflow: scroll;
+  margin: 10px;
+  border: 1px solid #F7840F;
+  padding: 10px;
+  background-color: #EFEFEF; }
+  .noteable form {
+    padding-top: 15px;
+    padding-bottom: 15px; }
+  .noteable .noteItem {
+    padding-top: 5px;
+    margin-bottom: 15px; }
+    .noteable .noteItem p {
+      text-align: left; }
+    .noteable .noteItem span {
+      font-weight: bold;
+      margin-bottom: 2px; }
 
 .footer {
   position: relative;
