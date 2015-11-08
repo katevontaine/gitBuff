@@ -22,5 +22,13 @@ var Ourtemplates ={
     '</ul>',
     ].join(""),
 
+    noteTemp:[
+      '<div class="noteItem" data-index=<%=id%>>',
+      '<span><%=noteDate.month%> <%=noteDate.dayOfMonth%></span>',
+      '<button type="delete" name="button" class="btn btn-xs deleteNote">X</button>',
+      '<p><%=text%></p>',
+      '</div>',
+    ].join(""),
+
 
 };
