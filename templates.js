@@ -22,5 +22,15 @@ var Ourtemplates ={
     '</ul>',
     ].join(""),
 
+    noteTemp:[
+      '<div class="noteItem" data-index="<%= _id %>>',
+      '<span><%=date%></span>',
+      '<button type="delete" name="button" class="btn btn-xs deleteNote">X</button>',
+      '<p>',
+      '<%=note%>',
+      '</p>',
+      '</div>',
+    ].join(""),
+
 
 };

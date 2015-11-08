@@ -198,6 +198,9 @@ NOTES
       font-weight: bold;
       margin-bottom: 2px; }
 
+.deleteNote {
+  float: right; }
+
 .footer {
   position: relative;
   width: 100%;

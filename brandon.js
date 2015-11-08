@@ -20,7 +20,7 @@
 //
 //         });
 //     });
-
+//
 // $.ajax({
 //     url:"/randomWorkout",
 //     method:'GET',
@@ -34,3 +34,43 @@
 //     },
 //   });
 // },
+
+
+    // $('form').on('click','.notesubmit', function(e){
+    //  e.preventDefault();
+    //  var theNote = $(this).siblings('input[name="thoughts"]').val();
+    //  var theDate =
+    //  $.ajax({
+    //    url:"https://tiny-tiny.herokuapp.com/collections/notes/",
+    //    method:'POST',
+    //    data: {note: theNote},
+    //    success:function(el){
+    //      console.log("Success: "+ el);
+    //      $('input[name="thoughts"]').val("");
+    //      page.loadTemplate($('noteable'), el, 'noteTemp');
+    //
+    //    },
+    //    failure:function(){
+    //      console.log("didn't work");
+    //    },
+    //  });
+    // });
+
+
+
+      // $('.noteable').on('click','.deleteNote', function(e){
+      //     e.preventDefault();
+      //     var deleteItem = $(this);
+      //     var delId = deleteItem.closest('div').data('index');
+      //     $.ajax({
+      //       url:'https://tiny-tiny.herokuapp.com/collections/notes/'+delId,
+      //       method:'DELETE',
+      //       success:funtion(el){
+      //         console.log('Success! ', + el);
+      //         deleteItem.closest('div').remove();
+      //       },
+      //       failure:function(){
+      //
+      //       }
+      //     });
+      // });
