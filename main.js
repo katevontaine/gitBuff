@@ -78,13 +78,11 @@
                e.preventDefault();
                var deleteItem = $(this);
                var noteId = deleteItem.closest('div').data('index');
-               console.log(noteId);
                $.ajax({
                  url:"/delete-note",
                  method:'POST',
                  data:{noteId: noteId},
                  success:function(){
-                   console.log("Success: ");
                    deleteItem.closest('div').remove();
                  },
                  failure:function(){
@@ -110,7 +108,7 @@
                  $('.pagecontent').removeClass('hide');
                  $('.workBG').css("background-color","#F7840F");
                  $('.noteBG').css("background-color","#A2AB2A");
-                 page.getWorkout();
+                 page.getWorkOut();
                });
 
 
