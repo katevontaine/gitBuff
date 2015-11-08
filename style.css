@@ -28,11 +28,17 @@ ul li {
   text-decoration: none; }
 
 form {
-  padding-top: 15px; }
+  padding-top: 15px;
+  margin-left: 10px; }
 
 /******************************************
 HEADER
 *******************************************/
+.quoteHs {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 5px; }
+
 header {
   background-color: #858A30;
   height: 230px; }
@@ -201,6 +207,9 @@ NOTES
 .deleteNote {
   float: right; }
 
+/***************************************
+FOOTER
+***************************************/
 .footer {
   position: relative;
   width: 100%;
@@ -209,3 +218,6 @@ NOTES
   text-align: center;
   color: black;
   font-size: 1.2em; }
+
+.copyright {
+  opacity: 0.3; }
