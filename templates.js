@@ -1,15 +1,3 @@
-//TEMPLATES//////////////////////////////////////////////////////////
-// <script type="text/html" id="noteTmpl">
-//   <article class="noteTem">
-//   <h4><%= todaysDate =%></h4>
-//   <p><%= myNote =%></p>
-// </script>
-// //////////////////////////////
-// <script type="text/html" id="workoutTmpl">
-//   <article class="workoutTem">
-//   <%= todaysWorkout =%>
-//   <p><%= noteForm =%></p>
-// </script>
 
 var Ourtemplates ={
 
@@ -20,6 +8,14 @@ var Ourtemplates ={
     '<li class="WorkItem"><h3 class="worktype">CORE</h3>   <%=coreWorkout.core%></li>',
     '<li class="WorkItem"><h3 class="worktype">CARDIO</h3>   <%=cardioWorkout.cardio%></li>',
     '</ul>',
+    ].join(""),
+
+    noteTemp:[
+      '<div class="noteItem" data-index=<%=id%>>',
+      '<span><%=noteDate.month%> <%=noteDate.dayOfMonth%></span>',
+      '<button type="delete" name="button" class="btn btn-xs deleteNote">X</button>',
+      '<p><%=text%></p>',
+      '</div>',
     ].join(""),
 
 

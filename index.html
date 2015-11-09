@@ -21,10 +21,7 @@
         </div>
     </header>
 
-    <div class="quote">
-        <h2>“I would rather die of passion than of boredom.”</h2>
-        <h5>Vincent Van Gough</h5>
-    </div>
+    <div class="quote"><h2>“I would rather die of passion than of boredom.”</h2><h5>Vincent Van Gough</h5></div>
 
     <section class="login">
       <form action="">
@@ -39,59 +36,56 @@
 <section class="pagecontent container hide">
   <br>
   <div class="col-md-8 colorcontent">
-  <nav class="col-md-12 clearfix specific">
-    <ul class="col-md-12">
-      <a class="work" href="">
-      <li class="col-md-6 workBG">
-        <h3>Workout</h3>
-      </li>
-    </a>
-    <a class="not" href="">
-        <li class="col-md-6 noteBG">
-          <h3>Notes</h3>
-        </li>
-      </a>
-    </ul>
-  </nav>
-  <div class="notes">
-    <h3>My Notes:</h3>
-    <div class="notebox" ><p> this is my notes section</p></div>
-    <div class="notebox"><p> this is my notes section</p></div>
-    <div class="notebox"><p> this is my notes section</p></div>
-  </div>
+      <nav class="col-md-12 clearfix specific">
+        <ul class="col-md-12">
+          <a class="work" href="">
+          <li class="col-md-6 workBG">
+            <h3>Workout</h3>
+          </li>
+        </a>
+        <a class="not" href="">
+            <li class="col-md-6 noteBG">
+              <h3>Notes</h3>
+            </li>
+          </a>
+        </ul>
+      </nav>
+      <div class="notes">
+        <h3>My Notes:</h3>
+        <form class="noteForm" action="">
+          <input style="width:250px;" type="text" name="thoughts" class="noteWO" placeholder="Today my workout was...">
+          <button type="submit" name="button" class="btn notesubmit">Submit</button>
+        </form>
+          <div class="noteable">
+
+          </div>
+      </div>
 
 
 
-  <div class="workout hide">
-  <h3>Today's Workout is:</h3>
-  <div class="todaysWorkout">
 
-    <form class="noteForm" action="">
-      <input style="width:250px;" type="text" name="thoughts" class="noteWO" placeholder="Today my workout was...">
-      <button type="submit" name="button" class="btn notesubmit">Submit</button>
-    </form>
-  </div></div>
-
-
+      <div class="workout hide">
+      <h3>Today's Workout is:</h3>
+      <div class="todaysWorkout">
+      </div>
+    </div>
   </div>
 
 
     </section>
+
+    <footer class="footer">
+        <span class="copyright">&copy gitBuff</span>
+    </footer>
     <!-- libs -->
     <script charset="utf-8" src="bower_components/jquery/dist/jquery.js">
     </script>
     <script charset="utf-8" src="bower_components/underscore/underscore.js">
     </script> <!-- scripts -->
 
-    <script charset="utf-8" src="vars.js">
-    </script>
     <script charset="utf-8" src="templates.js">
     </script>
     <script charset="utf-8" src="main.js">
-    </script>
-    <script charset="utf-8" src="brandon.js">
-    </script>
-    <script charset="utf-8" src="kate.js">
     </script>
 </body>
 </html>

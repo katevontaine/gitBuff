@@ -1,11 +1,11 @@
 package com.company;
 
 import jodd.json.JsonSerializer;
-import spark.ModelAndView;
 import spark.Session;
 import spark.Spark;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Main {
     static LocalDateTime lastWorkoutTime = null;
@@ -19,8 +19,9 @@ public class Main {
         stmt.execute("CREATE TABLE IF NOT EXISTS legs (id IDENTITY(1,1) , leg VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS cardios (id IDENTITY(1,1) , cardio VARCHAR)");
         stmt.execute("CREATE TABLE IF NOT EXISTS cores (id IDENTITY(1,1) , core VARCHAR)");
-        stmt.execute("CREATE TABLE IF NOT EXISTS notes (id IDENTITY(1,1) , note VARCHAR , note_date TIMESTAMP)");
-
+        stmt.execute("CREATE TABLE IF NOT EXISTS notes (id IDENTITY(1,1) , user_id INT, " +
+                "note VARCHAR , note_date TIMESTAMP)");
+        stmt.execute("CREATE TABLE IF NOT EXISTS quotes (id IDENTITY (1,1), quote VARCHAR)");
     }
 
     public static void insertUser (Connection conn , String name, String password , String url) throws SQLException {
@@ -50,6 +51,37 @@ public class Main {
         stmt.setInt(1, userId);
         stmt.setString(2, text);
         stmt.setTimestamp(3, Timestamp.valueOf(noteDate));
+        stmt.execute();
+    }
+
+    public static void deleteNote (Connection conn , int id) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM notes WHERE id = ?");
+        stmt.setInt(1, id);
+        stmt.execute();
+
+    }
+
+    public static void insertQuote(Connection conn) throws SQLException {
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO quotes VALUES (NULL, ?)");
+        stmt.setString(1, "Success is most often achieved by those who don't know that failure is inevitable -- Coco Chanel");
+        stmt.execute();
+        stmt.setString(1, "Things work out best for those who make the best of how things work out -- John Wooden");
+        stmt.execute();
+        stmt.setString(1, "Courage is grace under pressure -- Ernest Hemingway");
+        stmt.execute();
+        stmt.setString(1, "If you are not willing to risk the usual, you will have to settle for the ordinary -- Jim Rohn");
+        stmt.execute();
+        stmt.setString(1, "Learn from yesterday, live for today, hope for tomorrow. The important thing is not to stop questioning -- Albert Einstein");
+        stmt.execute();
+        stmt.setString(1, "All our dreams can come true if we have the courage to pursue them -- Walt Disney");
+        stmt.execute();
+        stmt.setString(1, "It does not matter how slowly you go, so long as you do not stop -- Confucius");
+        stmt.execute();
+        stmt.setString(1, "Success is walking from failure to failure with no loss of enthusiasm -- Winston Churchill");
+        stmt.execute();
+        stmt.setString(1, "Someone is sitting in the shade today because someone planted a tree a long time ago -- Warren Buffett");
+        stmt.execute();
+        stmt.setString(1, "Don't cry because it's over, smile because it happened -- Dr. Seuss");
         stmt.execute();
     }
 
@@ -109,6 +141,21 @@ public class Main {
         stmt.execute();
     }
 
+    public static Quote createQuote(Connection conn) throws SQLException {
+        Statement stmt = conn.createStatement();
+        Quote quote = null;
+        insertQuote(conn);
+
+        ResultSet resultsQuote = stmt.executeQuery("SELECT * FROM quotes ORDER BY RAND() LIMIT 1");
+        if(resultsQuote.next()) {
+            quote = new Quote();
+            quote.id =resultsQuote.getInt("id");
+            quote.quote = resultsQuote.getString("quote");
+        }
+        return quote;
+    }
+
+
     public static Workout createWorkout(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
         ArmWorkout armName = null;
@@ -161,6 +208,22 @@ public class Main {
         return workout;
     }
 
+    public static ArrayList<Note> selectNotes(Connection conn) throws SQLException {
+        ArrayList<Note> countries = new ArrayList();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM notes");
+        ResultSet results = stmt.executeQuery();
+        while (results.next()) {
+            Note note = new Note();
+            note.id = results.getInt("id");
+            note.text = results.getString("note");
+            note.noteDate = results.getTimestamp("note_date").toLocalDateTime();
+            countries.add(note);
+        }
+        return countries;
+    }
+
+    //**************************************************************************************************************//
+
 
     public static void main(String[] args) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:h2:./main");
@@ -170,6 +233,8 @@ public class Main {
         if (selectUser(conn, "alice") == null) {
             insertUser(conn, "alice", "1245", "");
         }
+
+        insertNote(conn, 0, "This is a note", LocalDateTime.now());
 
 
         Spark.externalStaticFileLocation(".");
@@ -193,36 +258,71 @@ public class Main {
                     } else if (!password.equals(user.password)) {
                         Spark.halt(403);
                     }
+
+                    Session session = request.session();
+                    session.attribute("username", username);
+
                     return "";
                 })
         );
 
         Spark.get("/randomWorkout",
                 (request, response) -> {
-                    if (lastWorkoutTime == null || lastWorkoutTime.isBefore(LocalDateTime.now().minusDays(1))) {
+                    if (lastWorkoutTime == null || lastWorkoutTime.isBefore(LocalDateTime.now().minusSeconds(10))){
                         lastWorkoutTime = LocalDateTime.now();
                         lastWorkout = createWorkout(conn);
                     }
                     JsonSerializer serializer = new JsonSerializer();
                     return serializer.serialize(lastWorkout);
                 });
+
         Spark.post(
                 "/create-note",
                 ((request, response) -> {
-                    String id = request.queryParams("userId");
-                    int userId = Integer.valueOf(id);
+                    Session session = request.session();
+                    String username = session.attribute("username");
+                    User me = selectUser(conn, username);
+                    int userId = me.id;
+
                     String note = request.queryParams("note");
-                    String noteDateStr = request.queryParams("noteDate");
+                    LocalDateTime noteDate = LocalDateTime.now();
                     try {
-                        LocalDateTime noteDate = LocalDateTime.parse(noteDateStr);
                         insertNote(conn, userId , note , noteDate );
                     }catch (Exception e){
                         System.out.println("failure to create note");
 
                     }
                     return "";
-
                 })
         );
+
+        Spark.get("/notes",
+                (request, response) -> {
+                        JsonSerializer serializer = new JsonSerializer();
+                        String json = serializer.serialize(selectNotes(conn));
+                        return json;
+                });
+
+        Spark.post(
+                "/delete-note",
+                ((request, response) -> {
+                    String id = request.queryParams("noteId");
+                    try {
+                        int idNum = Integer.valueOf(id);
+                        deleteNote(conn, idNum);
+                    }catch (Exception e){
+
+                    }
+                    return "";
+                })
+        );
+
+        Spark.get("/random-quote",
+                (request, response) -> {
+                    JsonSerializer serializer = new JsonSerializer(); //remember to create getters in Country class
+                    String json = serializer.serialize(createQuote(conn));
+                    return serializer.serialize(json);
+                });
         }
+
 }
