@@ -128,7 +128,9 @@
                  page.getWorkOut();
                });
 
-
+               $('.colorcontent').on('click',".logmeOut", function(event){
+               page.exitLogOut();
+             });
 
         },
         loggedIn: function(data) {
@@ -212,7 +214,12 @@
              });
              },
 
-
+        exitLogOut: function(){
+          window.onbeforeunload = function(event) {
+            alert("Are you sure you would like to logout?");
+            // return true;
+              }
+            },
 
 
 

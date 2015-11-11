@@ -66,6 +66,9 @@ header {
 /******************************************
 LOGIN SCREEN
 *******************************************/
+.error {
+  text-align: center; }
+
 section .login {
   background-color: white;
   width: 40%;
@@ -206,6 +209,13 @@ NOTES
 
 .deleteNote {
   float: right; }
+
+.theLOGout a {
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: none;
+  padding-left: 270px;
+  color: #F7840F; }
 
 /***************************************
 FOOTER

@@ -8,8 +8,6 @@ $tangerine: #F7840F;
 OVERALL BODY
 *******************************************/
 
-
-
 body{
   background-color: $medGreen;
   font-family: 'Josefin Sans', sans-serif;
@@ -205,6 +203,7 @@ section{
           margin: 0 auto;
           text-align: center;
         }
+
     }
 }
 
@@ -237,6 +236,7 @@ section{
   float:none;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+
 }
 
 .worktype{
@@ -275,6 +275,16 @@ NOTES
 .deleteNote{
   float:right;
 }
+////////////////////////////////////
+.theLOGout  a {
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: none;
+    padding-left: 270px;
+    color: $tangerine;
+    }
+
+
 /***************************************
 FOOTER
 ***************************************/
