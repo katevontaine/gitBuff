@@ -12,6 +12,7 @@
             page.events();
             page.getQuote();
 
+
         },
 
         styling: function() {

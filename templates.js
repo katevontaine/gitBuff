@@ -10,6 +10,7 @@ var Ourtemplates ={
     '</ul>',
     ].join(""),
 
+
     noteTemp:[
       '<div class="noteItem" data-index=<%=id%>>',
       '<span><%=noteDate.month%> <%=noteDate.dayOfMonth%></span>',
